@@ -26,7 +26,7 @@ enum class BspClass : uint32_t {
     NEG         = 101,
     COPLANAR    = 200
 };
-    
+
 enum class EdgeKind : uint32_t {
     NAKED_OR_SELF_INTER  = 100,
     SELF_INTER           = 200,
@@ -199,8 +199,6 @@ public:
     static SBsp2 *InsertOrCreateEdge(SBsp2 *where, SEdge *nedge,
                                      Vector nnp, Vector out);
     static SBsp2 *Alloc();
-
-    void DebugDraw(Vector n, double d) const;
 };
 
 class SBsp3 {
@@ -232,8 +230,6 @@ public:
     void InsertInPlane(bool pos2, STriangle *tr, SMesh *m);
 
     void GenerateInPaintOrder(SMesh *m) const;
-
-    void DebugDraw() const;
 };
 
 class SMesh {

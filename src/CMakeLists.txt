@@ -134,6 +134,7 @@ set(solvespace_HEADERS
     dsc.h
     expr.h
     polygon.h
+    render.h
     sketch.h
     solvespace.h
     ui.h
@@ -156,7 +157,6 @@ set(solvespace_SOURCES
     expr.cpp
     file.cpp
     generate.cpp
-    glhelper.cpp
     graphicswin.cpp
     group.cpp
     groupmesh.cpp
@@ -165,6 +165,8 @@ set(solvespace_SOURCES
     modify.cpp
     mouse.cpp
     polygon.cpp
+    render.cpp
+    rendergl.cpp
     resource.cpp
     request.cpp
     solvespace.cpp

@@ -8,11 +8,6 @@
 #ifndef __UI_H
 #define __UI_H
 
-#ifdef WIN32
-    // winnt.h
-    #undef DELETE
-#endif
-
 // This table describes the top-level menus in the graphics winodw.
 enum class Command : uint32_t {
     NONE = 0,
@@ -202,7 +197,7 @@ public:
         bool       *var;
         const char *iconName;
         const char *tip;
-        Pixmap      icon;
+        std::shared_ptr<Pixmap> icon;
     } HideShowIcon;
     static HideShowIcon hideShowIcons[];
     static bool SPACER;
@@ -219,16 +214,18 @@ public:
         HOVER = 1,
         CLICK = 2
     };
-    void DrawOrHitTestIcons(DrawOrHitHow how, double mx, double my);
+    void DrawOrHitTestIcons(UiCanvas *canvas, DrawOrHitHow how,
+                            double mx, double my);
     void TimerCallback();
     Point2d oldMousePos;
     HideShowIcon *hoveredIcon, *tooltippedIcon;
 
     Vector HsvToRgb(Vector hsv);
-    uint8_t *HsvPattern2d();
-    uint8_t *HsvPattern1d(double h, double s);
+    std::shared_ptr<Pixmap> HsvPattern2d(int w, int h);
+    std::shared_ptr<Pixmap> HsvPattern1d(double hue, double sat, int w, int h);
     void ColorPickerDone();
-    bool DrawOrHitTestColorPicker(DrawOrHitHow how, bool leftDown, double x, double y);
+    bool DrawOrHitTestColorPicker(UiCanvas *canvas, DrawOrHitHow how,
+                                  bool leftDown, double x, double y);
 
     void Init();
     void MakeColorTable(const Color *in, float *out);
@@ -546,6 +543,8 @@ public:
         bool        active;
     }       context;
 
+    Camera GetCamera() const;
+
     void NormalizeProjectionVectors();
     Point2d ProjectPoint(Vector p);
     Vector ProjectPoint3(Vector p);
@@ -649,7 +648,7 @@ public:
         hConstraint constraint;
         bool        emphasized;
 
-        void Draw();
+        void Draw(bool isHovered, Canvas *canvas);
 
         void Clear();
         bool IsEmpty();
@@ -702,8 +701,8 @@ public:
     int64_t contextMenuCancelTime;
 
     // The toolbar, in toolbar.cpp
-    bool ToolbarDrawOrHitTest(int x, int y, bool paint, Command *menuHit);
-    void ToolbarDraw();
+    bool ToolbarDrawOrHitTest(int x, int y, UiCanvas *canvas, Command *menuHit);
+    void ToolbarDraw(UiCanvas *canvas);
     bool ToolbarMouseMoved(int x, int y);
     bool ToolbarMouseDown(int x, int y);
     static void TimerCallback();
@@ -726,12 +725,15 @@ public:
     void ToggleBool(bool *v);
 
     bool    showSnapGrid;
+    void DrawSnapGrid(Canvas *canvas);
 
     void AddPointToDraggedList(hEntity hp);
     void StartDraggingByEntity(hEntity he);
     void StartDraggingBySelection();
     void UpdateDraggedNum(Vector *pos, double mx, double my);
     void UpdateDraggedPoint(hEntity hp, double mx, double my);
+
+    void DrawPersistent(Canvas *canvas);
 
     // These are called by the platform-specific code.
     void Paint();

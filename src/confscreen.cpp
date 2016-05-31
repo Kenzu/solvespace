@@ -301,11 +301,6 @@ void TextWindow::ShowConfiguration() {
     Printf(false, "%Ft autosave interval (in minutes)%E");
     Printf(false, "%Ba   %d %Fl%Ll%f[change]%E",
         SS.autosaveInterval, &ScreenChangeAutosaveInterval);
-
-    Printf(false, "");
-    Printf(false, " %Ftgl vendor   %E%s", glGetString(GL_VENDOR));
-    Printf(false, " %Ft   renderer %E%s", glGetString(GL_RENDERER));
-    Printf(false, " %Ft   version  %E%s", glGetString(GL_VERSION));
 }
 
 bool TextWindow::EditControlDoneForConfiguration(const char *s) {
