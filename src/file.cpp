@@ -478,6 +478,7 @@ bool SolveSpaceUI::LoadFromFile(const std::string &filename) {
             sv.r = {};
         } else if(strcmp(line, "AddConstraint")==0) {
             SK.constraint.Add(&(sv.c));
+            Expr::From(sv.c.comment.c_str(), false);
             sv.c = {};
         } else if(strcmp(line, "AddStyle")==0) {
             SK.style.Add(&(sv.s));
