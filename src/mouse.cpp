@@ -1266,7 +1266,8 @@ void GraphicsWindow::MouseLeftDoubleClick(double mx, double my) {
 
             case Constraint::Type::ANGLE:
             case Constraint::Type::LENGTH_RATIO:
-                editValue = ssprintf("%.3f", c->valA);
+                //editValue = ssprintf("%.3f", c->valA);
+                editValue =c->comment;
                 editMinWidthChar = 5;
                 break;
 
@@ -1293,7 +1294,9 @@ void GraphicsWindow::MouseLeftDoubleClick(double mx, double my) {
                         if(fabs(std::stod(editValue) - v) < eps) break;
                     }
                 }
-                editMinWidthChar = 5;
+                if ((c->comment)!="")editValue =c->comment;
+                editMinWidthChar = 30;
+                //editMinWidthChar = 5;
                 break;
             }
         }
@@ -1312,13 +1315,14 @@ void GraphicsWindow::EditControlDone(const char *s) {
     if(c->type == Constraint::Type::COMMENT) {
         SS.UndoRemember();
         c->comment = s;
+        Expr::From(s, false);
         return;
     }
 
     Expr *e = Expr::From(s, true);
     if(e) {
         SS.UndoRemember();
-
+        c->comment = s;
         switch(c->type) {
             case Constraint::Type::PROJ_PT_DISTANCE:
             case Constraint::Type::PT_LINE_DISTANCE:
