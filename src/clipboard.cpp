@@ -203,6 +203,12 @@ void GraphicsWindow::PasteClipboard(Vector trans, double theta, double scale) {
         c.workplane = SS.GW.ActiveWorkplane();
         c.type = cc->type;
         c.valA = cc->valA;
+        if (c.type == ConstraintBase::Type::PT_LINE_DISTANCE) {
+          if(scale < 0) {
+                  c.valA *= -1;
+          }
+          c.valA *= fabs(scale);
+        }
         c.ptA = SS.clipboard.NewEntityFor(cc->ptA);
         c.ptB = SS.clipboard.NewEntityFor(cc->ptB);
         c.entityA = SS.clipboard.NewEntityFor(cc->entityA);
