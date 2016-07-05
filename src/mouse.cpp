@@ -1063,7 +1063,8 @@ void GraphicsWindow::MouseLeftDown(double mx, double my) {
                     c.type        = Constraint::Type::COMMENT;
                     c.disp.offset = v;
                     c.comment = "NEW COMMENT -- DOUBLE-CLICK TO EDIT";
-                    Constraint::AddConstraint(&c);
+                    SS.GW.MouseLeftDoubleClick2(Constraint::AddConstraint(&c));
+
                     break;
                 }
                 default: ssassert(false, "Unexpected pending menu id");
@@ -1235,15 +1236,12 @@ void GraphicsWindow::MouseLeftUp(double mx, double my) {
     }
 }
 
-void GraphicsWindow::MouseLeftDoubleClick(double mx, double my) {
-    if(GraphicsEditControlIsVisible()) return;
-    SS.TW.HideEditControl();
+void GraphicsWindow::MouseLeftDoubleClick2(hConstraint cc) {
 
-    if(hover.constraint.v) {
-        constraintBeingEdited = hover.constraint;
+
+        constraintBeingEdited=cc;
+        Constraint *c=SK.GetConstraint(constraintBeingEdited);
         ClearSuper();
-
-        Constraint *c = SK.GetConstraint(constraintBeingEdited);
         if(!c->HasLabel()) {
             // Not meaningful to edit a constraint without a dimension
             return;
@@ -1258,6 +1256,7 @@ void GraphicsWindow::MouseLeftDoubleClick(double mx, double my) {
 
         std::string editValue;
         int editMinWidthChar;
+        
         switch(c->type) {
             case Constraint::Type::COMMENT:
                 editValue = c->comment;
@@ -1268,11 +1267,12 @@ void GraphicsWindow::MouseLeftDoubleClick(double mx, double my) {
             case Constraint::Type::LENGTH_RATIO:
                 //editValue = ssprintf("%.3f", c->valA);
                 editValue =c->comment;
-                editMinWidthChar = 5;
+                editMinWidthChar = 30;
                 break;
 
             default: {
                 double v = fabs(c->valA);
+                
 
                 // If displayed as radius, also edit as radius.
                 if(c->type == Constraint::Type::DIAMETER && c->other)
@@ -1296,28 +1296,43 @@ void GraphicsWindow::MouseLeftDoubleClick(double mx, double my) {
                 }
                 if ((c->comment)!="")editValue =c->comment;
                 editMinWidthChar = 30;
-                //editMinWidthChar = 5;
                 break;
             }
         }
         hStyle hs = c->disp.style;
         if(hs.v == 0) hs.v = Style::CONSTRAINT;
+        
         ShowGraphicsEditControl((int)p2.x, (int)p2.y,
                                 (int)(ssglStrFontSize(Style::TextHeight(hs)) * scale),
                                 editMinWidthChar, editValue);
+        
+        //EditControlDone("yes");
+}
+void GraphicsWindow::MouseLeftDoubleClick(double mx, double my) {
+   
+    if(GraphicsEditControlIsVisible()) return;
+    SS.TW.HideEditControl();
+    
+    if(hover.constraint.v) {
+
+      constraintBeingEdited = hover.constraint;
+      
+      MouseLeftDoubleClick2(hover.constraint);
     }
 }
 
 void GraphicsWindow::EditControlDone(const char *s) {
     HideGraphicsEditControl();
+    
     Constraint *c = SK.GetConstraint(constraintBeingEdited);
-
     if(c->type == Constraint::Type::COMMENT) {
         SS.UndoRemember();
         c->comment = s;
-        Expr::From(s, false);
+        
+        Expr::From(s, true);
         return;
     }
+ 
 
     Expr *e = Expr::From(s, true);
     if(e) {
