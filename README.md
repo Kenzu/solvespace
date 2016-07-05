@@ -1,5 +1,10 @@
 SolveSpace
 ==========
+Minor fixes by ryan:
+- Named variable using comment constraint , example `d=10` can be use on other constraint `d+0.5`
+- copy paste transformed mirrorer (scale -1) to mirror the constraint too
+- keep the expression on contraint editing, so next time edit constraint again it will show, for example `d+0.5` instead `10.5`
+
 
 This repository contains the source code of [SolveSpace][], a parametric
 2d/3d CAD.
