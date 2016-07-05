@@ -184,7 +184,9 @@ void Constraint::MenuConstrain(Command id) {
 
             c.valA = 0;
             c.ModifyToSatisfy();
-            AddConstraint(&c);
+            // must call edit constraint imediately aka double click on constraint
+            SS.GW.MouseLeftDoubleClick2(AddConstraint(&c));
+
             break;
         }
 
