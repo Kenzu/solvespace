@@ -5,6 +5,7 @@ Minor fixes by ryan:
 - copy paste transformed mirrorer (scale -1) to mirror the constraint too
 - keep the expression on contraint editing, so next time edit constraint again it will show, for example `d+0.5` instead `10.5`
 
+[New feature video](https://youtu.be/UPgOUa1Q2Ns)
 
 This repository contains the source code of [SolveSpace][], a parametric
 2d/3d CAD.
