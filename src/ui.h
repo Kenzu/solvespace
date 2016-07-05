@@ -739,6 +739,7 @@ public:
                                 bool rightDown, bool shiftDown, bool ctrlDown);
     void MouseLeftDown(double x, double y);
     void MouseLeftUp(double x, double y);
+    void MouseLeftDoubleClick2(hConstraint cc);
     void MouseLeftDoubleClick(double x, double y);
     void MouseMiddleOrRightDown(double x, double y);
     void MouseRightUp(double x, double y);
