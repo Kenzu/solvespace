@@ -7,6 +7,8 @@
 // Copyright 2008-2013 Jonathan Westhues.
 //-----------------------------------------------------------------------------
 #include "solvespace.h"
+// modif ryan
+std::map<std::string, double> vars;
 
 ExprVector ExprVector::From(Expr *x, Expr *y, Expr *z) {
     ExprVector r = { x, y, z};
@@ -789,7 +791,11 @@ void Expr::Lex(const char *in) {
                 e->op = Op::CONSTANT;
                 e->v = PI;
             } else {
-                throw "unknown name";
+                // find in our map if we have the named varriable
+                e->op = Op::CONSTANT;
+                e->v = vars[name];
+                
+                //throw "unknown name";
             }
             Unparsed[UnparsedCnt++] = e;
         } else if(strchr("+-*/()", c)) {
@@ -808,17 +814,33 @@ void Expr::Lex(const char *in) {
     }
 }
 
-Expr *Expr::From(const char *in, bool popUpError) {
+Expr *Expr::From(const char *inx, bool popUpError) {
     UnparsedCnt = 0;
     UnparsedP = 0;
     OperandsP = 0;
     OperatorsP = 0;
-
+// modif ryan
+    std::string s(inx);
+    std::string delimiter = "=";
+    std::string named="";
+    int xx=s.find(delimiter);
+    if (xx>=0) {
+      named = s.substr(0, xx); 
+      s = s.substr(xx+1, s.length()); 
+    }
+    //char *in = new char[s.length() + 1];
+    //strcpy(cstr, str.c_str());
+    const char *in=s.c_str();
+    
     Expr *r;
     try {
         Lex(in);
         Parse();
         r = PopOperand();
+        if (xx>=0){
+          vars[named]=r->Eval();
+          //Error("Named,VAR: '%s',%f", named.c_str(),vars[named]);
+        }
     } catch (const char *e) {
         dbp("exception: parse/lex error: %s", e);
         if(popUpError) {
