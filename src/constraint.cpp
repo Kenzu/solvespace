@@ -184,7 +184,7 @@ void Constraint::MenuConstrain(Command id) {
 
             c.valA = 0;
             c.ModifyToSatisfy();
-            // must call edit constraint imediately aka double click on constraint
+            // ryan: must call edit constraint imediately aka double click on constraint
             SS.GW.MouseLeftDoubleClick2(AddConstraint(&c));
 
             break;
@@ -305,6 +305,7 @@ void Constraint::MenuConstrain(Command id) {
                 }
             }
             AddConstraint(&c);
+            
             break;
 
         case Command::RATIO:
@@ -321,7 +322,9 @@ void Constraint::MenuConstrain(Command id) {
 
             c.valA = 0;
             c.ModifyToSatisfy();
-            AddConstraint(&c);
+            //AddConstraint(&c);
+            // ryan: must call edit constraint imediately aka double click on constraint
+            SS.GW.MouseLeftDoubleClick2(AddConstraint(&c));
             break;
 
         case Command::DIFFERENCE:
@@ -338,7 +341,9 @@ void Constraint::MenuConstrain(Command id) {
 
             c.valA = 0;
             c.ModifyToSatisfy();
-            AddConstraint(&c);
+            //AddConstraint(&c);
+            // ryan: must call edit constraint imediately aka double click on constraint
+            SS.GW.MouseLeftDoubleClick2(AddConstraint(&c));
             break;
 
         case Command::AT_MIDPOINT:
@@ -595,7 +600,9 @@ void Constraint::MenuConstrain(Command id) {
             }
 
             c.ModifyToSatisfy();
-            AddConstraint(&c);
+            // ryan
+            SS.GW.MouseLeftDoubleClick2(AddConstraint(&c));
+            //AddConstraint(&c);
             break;
         }
 

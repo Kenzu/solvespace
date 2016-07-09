@@ -191,6 +191,9 @@ void ConstraintBase::ModifyToSatisfy() {
 
         l.Clear();
     }
+    //char  ff[30];
+    comment=ssprintf("%f",valA);
+    //comment=ff;
 }
 
 void ConstraintBase::AddEq(IdList<Equation,hEquation> *l, Expr *expr, int index) const

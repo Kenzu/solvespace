@@ -33,6 +33,7 @@ public:
         COS            = 108,
         ASIN           = 109,
         ACOS           = 110,
+        LOADVARS       = 111,
 
         // Special helpers for when we're parsing an expression from text.
         // Initially, literals (like a constant number) appear in the same
@@ -55,6 +56,7 @@ public:
 
         // For use while parsing
         char    c;
+        char    vc[70];
     };
 
     Expr() { }
@@ -79,6 +81,7 @@ public:
     inline Expr *Cos   () { return AnyOp(Op::COS,    NULL); }
     inline Expr *ASin  () { return AnyOp(Op::ASIN,   NULL); }
     inline Expr *ACos  () { return AnyOp(Op::ACOS,   NULL); }
+    inline Expr *LoadVars  () { return AnyOp(Op::LOADVARS,   NULL); }
 
     Expr *PartialWrt(hParam p) const;
     double Eval() const;

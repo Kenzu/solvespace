@@ -53,6 +53,7 @@ enum class Command : uint32_t {
     COPY,
     PASTE,
     PASTE_TRANSFORM,
+    PASTE_MIRROR,
     DELETE,
     SELECT_CHAIN,
     SELECT_ALL,
@@ -143,6 +144,9 @@ enum class ContextCommand : uint32_t {
     SNAP_TO_GRID     = 0x140,
     REMOVE_SPLINE_PT = 0x141,
     ADD_SPLINE_PT    = 0x142,
+
+    PASTE_MIRR       = 0x1051,
+    
     FIRST_STYLE      = 0x40000000
 };
 
@@ -739,6 +743,7 @@ public:
                                 bool rightDown, bool shiftDown, bool ctrlDown);
     void MouseLeftDown(double x, double y);
     void MouseLeftUp(double x, double y);
+    void MouseLeftDoubleClick2(hConstraint cc);
     void MouseLeftDoubleClick(double x, double y);
     void MouseMiddleOrRightDown(double x, double y);
     void MouseRightUp(double x, double y);

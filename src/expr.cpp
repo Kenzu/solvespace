@@ -7,8 +7,34 @@
 // Copyright 2008-2013 Jonathan Westhues.
 //-----------------------------------------------------------------------------
 #include "solvespace.h"
+#include <fstream>
+#include <sstream>
+#include <string>
 // modif ryan
 std::map<std::string, double> vars;
+char named[100];
+int loadvars(char *filename){
+
+  FILE * fp;
+  char *line = (char*)malloc(100);
+  size_t len = 0;
+  int read;
+  //if (filename!=NULL)strcpy(named,filename);
+  fp = fopen(named, "r");
+  vars["r2"]=20;
+  if (fp == NULL) return 0;
+  vars["r2"]=30;
+
+  while ((read = getline(&line, &len, fp)) != -1) {
+    Expr::From(line, true);
+    vars["r2"]=40;
+  }
+  free(line);
+  fclose(fp);
+  
+  //strcpy(named,filename);
+  return 1;
+}
 
 ExprVector ExprVector::From(Expr *x, Expr *y, Expr *z) {
     ExprVector r = { x, y, z};
@@ -284,6 +310,8 @@ int Expr::Children() const {
         case Op::COS:
         case Op::ASIN:
         case Op::ACOS:
+        case Op::LOADVARS:
+        
             return 1;
 
         case Op::PAREN:
@@ -359,6 +387,7 @@ double Expr::Eval() const {
         case Op::COS:           return cos(a->Eval());
         case Op::ACOS:          return acos(a->Eval());
         case Op::ASIN:          return asin(a->Eval());
+        case Op::LOADVARS:      return loadvars(a->vc);
 
         case Op::PAREN:
         case Op::BINARY_OP:
@@ -408,6 +437,7 @@ Expr *Expr::PartialWrt(hParam p) const {
             return (From(-1)->Div((From(1)->Minus(a->Square()))->Sqrt()))
                         ->Times(a->PartialWrt(p));
 
+        case Op::LOADVARS:
         case Op::PAREN:
         case Op::BINARY_OP:
         case Op::UNARY_OP:
@@ -503,7 +533,7 @@ Expr *Expr::FoldConstants() {
                 n->v = nv;
             }
             break;
-
+        case Op::LOADVARS:
         case Op::PAREN:
         case Op::BINARY_OP:
         case Op::UNARY_OP:
@@ -590,6 +620,7 @@ p:
         case Op::COS:       return "(cos " + a->Print() + ")";
         case Op::ASIN:      return "(asin " + a->Print() + ")";
         case Op::ACOS:      return "(acos " + a->Print() + ")";
+        case Op::LOADVARS:      return "(loadvars " + a->Print() + ")";
 
         case Op::PAREN:
         case Op::BINARY_OP:
@@ -655,6 +686,7 @@ int Expr::Precedence(Expr *e) {
         case 'q':
         case 's':
         case 'c':
+        case 'l':
         case 'n':   return 30;
 
         case '*':
@@ -685,6 +717,7 @@ c:
             break;
 
         case 'n': n = PopOperand()->Negate(); break;
+        case 'l': n = PopOperand()->LoadVars(); break;
         case 'q': n = PopOperand()->Sqrt(); break;
         case 's': n = (PopOperand()->Times(Expr::From(PI/180)))->Sin(); break;
         case 'c': n = (PopOperand()->Times(Expr::From(PI/180)))->Cos(); break;
@@ -755,7 +788,24 @@ void Expr::Lex(const char *in) {
         if(UnparsedCnt >= MAX_UNPARSED) throw "too long";
 
         char c = *in;
-        if(isdigit(c) || c == '.') {
+        if(c == '"') {
+            char name[70];
+            int len = 0;
+            in++;
+            while(*in!='"' && len < 60) {
+                name[len++] = *in;
+                in++;
+            }
+            name[len++] = '\0';
+            in++;
+            Expr *e = AllocExpr();
+            e->op = Op::CONSTANT;
+                
+            strcpy(e->vc, name);
+            strcpy(named, name);
+            Unparsed[UnparsedCnt++] = e;
+        
+        } else if(isdigit(c) || c == '.') {
             // A number literal
             char number[70];
             int len = 0;
@@ -776,8 +826,11 @@ void Expr::Lex(const char *in) {
                 in++;
             }
             name[len++] = '\0';
+            
 
             Expr *e = AllocExpr();
+
+            
             if(strcmp(name, "sqrt")==0) {
                 e->op = Op::UNARY_OP;
                 e->c = 'q';
@@ -790,10 +843,16 @@ void Expr::Lex(const char *in) {
             } else if(strcmp(name, "pi")==0) {
                 e->op = Op::CONSTANT;
                 e->v = PI;
+            } else if(strcmp(name, "loadvars")==0) {
+                e->op = Op::UNARY_OP;
+                e->c = 'l';
             } else {
                 // find in our map if we have the named varriable
                 e->op = Op::CONSTANT;
-                e->v = vars[name];
+                
+                strcpy(named, name);
+                strcpy(e->vc, name);
+                if (vars.find(name) == vars.end())e->v=0;else e->v = vars[name];
                 
                 //throw "unknown name";
             }

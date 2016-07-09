@@ -617,6 +617,7 @@ void GraphicsWindow::MouseRightUp(double x, double y) {
     if((SS.clipboard.r.n > 0 || SS.clipboard.c.n > 0) && LockedInWorkplane()) {
         AddContextMenuItem("Paste", ContextCommand::PASTE);
         AddContextMenuItem("Paste Transformed...", ContextCommand::PASTE_XFRM);
+        AddContextMenuItem("Paste Mirrored...", ContextCommand::PASTE_MIRR);
     }
 
     if(itemsSelected) {
@@ -666,6 +667,9 @@ void GraphicsWindow::MouseRightUp(double x, double y) {
 
         case ContextCommand::PASTE_XFRM:
             MenuClipboard(Command::PASTE_TRANSFORM);
+            break;
+        case ContextCommand::PASTE_MIRR:
+            MenuClipboard(Command::PASTE_MIRROR);
             break;
 
         case ContextCommand::DELETE_SEL:
@@ -1329,7 +1333,7 @@ void GraphicsWindow::EditControlDone(const char *s) {
         SS.UndoRemember();
         c->comment = s;
         
-        Expr::From(s, true);
+        Expr::From(s, true)->Eval();
         return;
     }
  

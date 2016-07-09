@@ -246,7 +246,7 @@ void GraphicsWindow::MenuClipboard(Command id) {
             SS.GW.PasteClipboard(trans, 0, 1);
             break;
         }
-
+        case Command::PASTE_MIRROR:
         case Command::PASTE_TRANSFORM: {
             if(SS.clipboard.r.n == 0) {
                 Error("Clipboard is empty; nothing to paste.");
@@ -260,6 +260,7 @@ void GraphicsWindow::MenuClipboard(Command id) {
             SS.TW.shown.paste.theta  = 0;
             SS.TW.shown.paste.origin = p;
             SS.TW.shown.paste.scale  = 1;
+            if (id==Command::PASTE_MIRROR) SS.TW.shown.paste.scale  = -1;
             SS.TW.GoToScreen(TextWindow::Screen::PASTE_TRANSFORMED);
             SS.GW.ForceTextWindowShown();
             SS.ScheduleShowTW();
