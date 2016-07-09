@@ -5,6 +5,7 @@ Minor fixes by ryan:
 - copy paste transformed mirrorer (scale -1) to mirror the constraint too
 - keep the expression on contraint editing, so next time edit constraint again it will show, for example `d+0.5` instead `10.5`
 - When add constraint, directly edit the content.
+- load parameter from external file
 
 [New feature video](https://youtu.be/UPgOUa1Q2Ns)
 Ubuntu compiled file available
