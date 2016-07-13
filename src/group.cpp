@@ -790,7 +790,7 @@ void Group::CopyEntity(IdList<Entity,hEntity> *el,
     en.style = ep->style;
     en.str = ep->str;
     en.font = ep->font;
-
+// ryan modif, no
     switch(ep->type) {
         case Entity::Type::WORKPLANE:
             // Don't copy these.
