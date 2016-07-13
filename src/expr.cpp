@@ -15,47 +15,23 @@
 std::map<std::string, double> vars;
 char named[100];
 int loadvars(char *filename){
-/*
-  FILE * fp;
-  char *line = (char*)malloc(100);
-  size_t len = 0;
-  int read;
-  //if (filename!=NULL)strcpy(named,filename);
-  fp = fopen(named, "r");
-  vars["r2"]=20;
-  if (fp == NULL) return 0;
-  vars["r2"]=30;
 
-  while ((read = getline(&line, &len, fp)) != -1) {
-    if (line[0]==';') continue;
-    if (line[0]=='\n') continue;
-    if (line[0]=='\r') continue;
-    if (line[0]=='\0') continue;
-    
-    Expr::From(line, true);
-    vars["r2"]=40;
-  }
-  free(line);
-  fclose(fp);
-  
-  //strcpy(named,filename);
-  return 1;
-*/
     std::ifstream in_stream;
     char *line = (char*)malloc(100);
     in_stream.open(filename);
-
-    while(!in_stream.eof())
-    {
-        in_stream >> line;
-        if (line[0]==';') continue;
-        if (line[0]=='\n') continue;
-        if (line[0]=='\r') continue;
-        if (line[0]=='\0') continue;
-        Expr::From(line, false);
+    if (in_stream.good()) {
+        while(!in_stream.eof())
+        {
+            in_stream >> line;
+            if (line[0]==';') continue;
+            if (line[0]=='\n') continue;
+            if (line[0]=='\r') continue;
+            if (line[0]=='\0') continue;
+            Expr::From(line, false);
+        }
+        in_stream.close();
     }
     free(line);
-    in_stream.close();
     return 1;
 }
 
