@@ -49,6 +49,7 @@
 #include <fontconfig/fontconfig.h>
 
 #include <GL/glx.h>
+#define CLIONLY
 
 #include "solvespace.h"
 #include "config.h"
