@@ -392,12 +392,21 @@ void ssglInitializeBitmapFont();
 void ssglBitmapText(const std::string &str, Vector p);
 double ssglBitmapCharQuad(char32_t chr, double x, double y);
 int ssglBitmapCharWidth(char32_t chr);
+
+/*
 #define TEXTURE_BACKGROUND_IMG  10
 #define TEXTURE_DRAW_PIXELS     20
 #define TEXTURE_COLOR_PICKER_2D 30
 #define TEXTURE_COLOR_PICKER_1D 40
 #define TEXTURE_BITMAP_FONT     50
-
+*/
+void ssglBindTexture(GLenum target, GLuint *id);
+  
+static GLuint TEXTURE_BACKGROUND_IMG       = 0;
+static GLuint TEXTURE_DRAW_PIXELS          = 0;
+static GLuint TEXTURE_COLOR_PICKER_2D      = 0;
+static GLuint TEXTURE_COLOR_PICKER_1D      = 0;
+static GLuint TEXTURE_BITMAP_FONT          = 0;
 
 #define arraylen(x) (sizeof((x))/sizeof((x)[0]))
 #define PI (3.1415926535897931)

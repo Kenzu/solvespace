@@ -565,7 +565,8 @@ void ssglDepthRangeLockToFront(bool yes)
 }
 
 void ssglDrawPixmap(const Pixmap &pixmap, Vector a, Vector b, Vector c, Vector d) {
-    glBindTexture(GL_TEXTURE_2D, TEXTURE_DRAW_PIXELS);
+    //glBindTexture(GL_TEXTURE_2D, TEXTURE_DRAW_PIXELS);
+    ssglBindTexture(GL_TEXTURE_2D, &TEXTURE_DRAW_PIXELS);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,     GL_CLAMP);
@@ -633,7 +634,8 @@ void ssglInitializeBitmapFont()
 {
     LoadBitmapFont();
 
-    glBindTexture(GL_TEXTURE_2D, TEXTURE_BITMAP_FONT);
+    //glBindTexture(GL_TEXTURE_2D, TEXTURE_BITMAP_FONT);
+    ssglBindTexture(GL_TEXTURE_2D, &TEXTURE_BITMAP_FONT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,     GL_CLAMP);
@@ -644,6 +646,13 @@ void ssglInitializeBitmapFont()
                  0, GL_ALPHA, GL_UNSIGNED_BYTE, &BuiltinBitmapFont.texture[0]);
 }
 
+// add ssgl
+void ssglBindTexture(GLenum target, GLuint *id) {
+     if(*id == 0) {
+         glGenTextures(1, id);
+     }
+     glBindTexture(target, *id);
+}
 int ssglBitmapCharWidth(char32_t codepoint) {
     if(codepoint >= 0xe000 && codepoint <= 0xefff) {
         // These are special-cased because checkboxes predate support for 2 cell wide
