@@ -314,7 +314,9 @@ void SolveSpaceUI::GenerateAll(Generate type, bool andFindFree, bool genForBBox)
     }
 
     prev.Clear();
-    //ryan CLIONLY InvalidateGraphics();
+    #ifndef CLIONLY
+    InvalidateGraphics();
+    #endif
 
     // Remove nonexistent selection items, for same reason we waited till
     // the end to put up a dialog box.
