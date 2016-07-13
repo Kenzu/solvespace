@@ -24,6 +24,9 @@
 #include <unordered_map>
 #include <map>
 #include <set>
+
+//#define CLIONLY
+
 #ifdef WIN32
 #   include <windows.h> // required by GL headers
 #endif
@@ -921,6 +924,7 @@ public:
         ALL,
         REGEN,
         UNTIL_ACTIVE,
+        ONLY_ACTIVE,
     };
 
     void GenerateAll(Generate type = Generate::DIRTY, bool andFindFree = false,

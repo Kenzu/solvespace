@@ -4,6 +4,7 @@
 // Copyright 2008-2013 Jonathan Westhues.
 //-----------------------------------------------------------------------------
 #include "solvespace.h"
+#include <unistd.h>
 
 #define VERSION_STRING "\261\262\263" "SolveSpaceREVa"
 
@@ -233,7 +234,7 @@ void SolveSpaceUI::SaveUsingTable(int type) {
             case 'b': fprintf(fh, "%d",    p->b() ? 1 : 0);       break;
             case 'c': fprintf(fh, "%08x",  p->c().ToPackedInt()); break;
             case 'd': fprintf(fh, "%d",    p->d());               break;
-            case 'f': fprintf(fh, "%.20f", p->f());               break;
+            case 'f': fprintf(fh, "%.4f", p->f());               break;
             case 'x': fprintf(fh, "%08x",  p->x());               break;
 
             case 'M': {
@@ -298,9 +299,19 @@ bool SolveSpaceUI::SaveToFile(const std::string &filename) {
 
     for(i = 0; i < SK.constraint.n; i++) {
         sv.c = SK.constraint.elem[i];
-        SaveUsingTable('c');
-        fprintf(fh, "AddConstraint\n\n");
+        if (sv.c.type==Constraint::Type::COMMENT) {
+          SaveUsingTable('c');
+          fprintf(fh, "AddConstraint\n\n");
+        }
     }
+    for(i = 0; i < SK.constraint.n; i++) {
+        sv.c = SK.constraint.elem[i];
+        if (sv.c.type!=Constraint::Type::COMMENT) {
+          SaveUsingTable('c');
+          fprintf(fh, "AddConstraint\n\n");
+        }
+    }
+
 
     for(i = 0; i < SK.style.n; i++) {
         sv.s = SK.style.elem[i];
@@ -425,10 +436,19 @@ void SolveSpaceUI::LoadUsingTable(char *key, char *val) {
     }
 }
 
+std::string dirnameOf(const std::string& fname)
+{
+     size_t pos = fname.find_last_of("\\/");
+     return (std::string::npos == pos)
+         ? ""
+         : fname.substr(0, pos);
+}
 bool SolveSpaceUI::LoadFromFile(const std::string &filename) {
     allConsistent = false;
     fileLoadError = false;
-
+    std::string folder = dirnameOf(filename);
+    chdir(folder.c_str());
+    
     fh = ssfopen(filename, "rb");
     if(!fh) {
         Error("Couldn't read from file '%s'", filename.c_str());
@@ -439,6 +459,7 @@ bool SolveSpaceUI::LoadFromFile(const std::string &filename) {
 
     sv = {};
     sv.g.scale = 1; // default is 1, not 0; so legacy files need this
+    sv.c.comment="";
     Style::FillDefaultStyle(&sv.s);
 
     char line[1024];
@@ -482,11 +503,16 @@ bool SolveSpaceUI::LoadFromFile(const std::string &filename) {
             
             if (sv.c.comment!=""){
               if (sv.c.type==Constraint::Type::COMMENT) e->Eval();
-              else sv.c.valA=fabs(SS.ExprToMm(e));
+              else {
+                double vv=(SS.ExprToMm(e));
+                sv.c.valA=vv;
+              }
             }
             
             SK.constraint.Add(&(sv.c));
             sv.c = {};
+            sv.c.comment="";
+
         } else if(strcmp(line, "AddStyle")==0) {
             SK.style.Add(&(sv.s));
             sv.s = {};

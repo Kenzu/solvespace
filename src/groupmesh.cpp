@@ -187,6 +187,7 @@ void Group::GenerateShellAndMesh() {
     thisMesh.Clear();
     runningShell.Clear();
     runningMesh.Clear();
+    
 
     // Don't attempt a lathe or extrusion unless the source section is good:
     // planar and not self-intersecting.
@@ -342,6 +343,7 @@ void Group::GenerateShellAndMesh() {
         thisShell.TriangulateInto(&thism);
 
         SMesh outm = {};
+        // modif ryan not make slow
         GenerateForBoolean<SMesh>(&prevm, &thism, &outm, srcg->meshCombine);
 
         // And make sure that the output mesh is vertex-to-vertex.

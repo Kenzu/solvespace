@@ -461,6 +461,7 @@ void GraphicsWindow::MouseMoved(double x, double y, bool leftDown,
     }
 
     SS.GenerateAll();
+    //SS.GenerateAll(SS.Generate::ONLY_ACTIVE);
 }
 
 void GraphicsWindow::ClearPending() {
@@ -1275,7 +1276,7 @@ void GraphicsWindow::MouseLeftDoubleClick2(hConstraint cc) {
                 break;
 
             default: {
-                double v = fabs(c->valA);
+                double v = c->valA;
                 
 
                 // If displayed as radius, also edit as radius.
@@ -1351,19 +1352,21 @@ void GraphicsWindow::EditControlDone(const char *s) {
                 // The sign is not displayed to the user, but this is a signed
                 // distance internally. To flip the sign, the user enters a
                 // negative distance.
-                bool wasNeg = (c->valA < 0);
+                c->valA = SS.ExprToMm(e);
+                /*bool wasNeg = (c->valA < 0);
                 if(wasNeg) {
                     c->valA = -SS.ExprToMm(e);
                 } else {
                     c->valA = SS.ExprToMm(e);
                 }
+                */
                 break;
             }
             case Constraint::Type::ANGLE:
             case Constraint::Type::LENGTH_RATIO:
                 // These don't get the units conversion for distance, and
                 // they're always positive
-                c->valA = fabs(e->Eval());
+                c->valA = fabs( e->Eval());
                 break;
 
             case Constraint::Type::DIAMETER:

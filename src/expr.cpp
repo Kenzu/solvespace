@@ -26,6 +26,11 @@ int loadvars(char *filename){
   vars["r2"]=30;
 
   while ((read = getline(&line, &len, fp)) != -1) {
+    if (line[0]==';') continue;
+    if (line[0]=='\n') continue;
+    if (line[0]=='\r') continue;
+    if (line[0]=='\0') continue;
+    
     Expr::From(line, true);
     vars["r2"]=40;
   }
@@ -784,6 +789,13 @@ void Expr::Parse() {
 }
 
 void Expr::Lex(const char *in) {
+    if (*in==';'){
+      Expr *e = AllocExpr();
+      e->op = Op::CONSTANT;
+      e->v=0;
+      Unparsed[UnparsedCnt++] = e;
+      return;
+    }
     while(*in) {
         if(UnparsedCnt >= MAX_UNPARSED) throw "too long";
 
@@ -878,7 +890,7 @@ Expr *Expr::From(const char *inx, bool popUpError) {
     UnparsedP = 0;
     OperandsP = 0;
     OperatorsP = 0;
-// modif ryan
+    Expr *r={};
     std::string s(inx);
     std::string delimiter = "=";
     std::string named="";
@@ -891,7 +903,7 @@ Expr *Expr::From(const char *inx, bool popUpError) {
     //strcpy(cstr, str.c_str());
     const char *in=s.c_str();
     
-    Expr *r;
+
     try {
         Lex(in);
         Parse();

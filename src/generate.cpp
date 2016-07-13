@@ -198,6 +198,16 @@ void SolveSpaceUI::GenerateAll(Generate type, bool andFindFree, bool genForBBox)
             last  = i;
             break;
         }
+        case Generate::ONLY_ACTIVE: {
+            for(i = 0; i < SK.groupOrder.n; i++) {
+                if(SK.groupOrder.elem[i].v == SS.GW.activeGroup.v)
+                    break;
+            }
+
+            first = i;
+            last  = i;
+            break;
+        }
     }
 
     // If we're generating entities for display, first we need to find
@@ -304,7 +314,7 @@ void SolveSpaceUI::GenerateAll(Generate type, bool andFindFree, bool genForBBox)
     }
 
     prev.Clear();
-    InvalidateGraphics();
+    //ryan CLIONLY InvalidateGraphics();
 
     // Remove nonexistent selection items, for same reason we waited till
     // the end to put up a dialog box.

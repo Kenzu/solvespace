@@ -1565,7 +1565,54 @@ void ExitNow(void) {
 }
 };
 
+
+void exportstl(char *filename){
+
+    std::cerr << "setup\n";
+    // Clear out the traced point, which is no longer valid
+    SS.traced.point = Entity::NO_ENTITY;
+    SS.traced.path.l.Clear();
+    // and the naked edges
+    SS.nakedEdges.Clear();
+
+    // Quit export mode
+    SS.justExportedInfo.draw = false;
+    SS.exportMode = false;
+
+    SS.GW.offset    = Vector::From(0, 0, 0);
+    SS.GW.projRight = Vector::From(1, 0, 0);
+    SS.GW.projUp    = Vector::From(0, 1, 0);
+    std::cerr << "generate regen\n";
+    SS.exportMode = false;
+    SS.GenerateAll(SS.Generate::REGEN);
+    //std::cerr << "zoomfit\n";
+    //SS.GW.ZoomToFit(false);
+
+    std::cerr << "activate group\n";
+    SS.GW.activeGroup = SK.groupOrder.elem[SK.groupOrder.n - 1];
+    SK.GetGroup(SS.GW.activeGroup)->Activate();
+
+    std::cerr << "generate all\n";
+    SS.exportMode = true;
+    SS.GenerateAll(SS.Generate::ALL);
+    //SS.ScheduleShowTW();
+
+    Group *g = SK.GetGroup(SS.GW.activeGroup);
+    g->GenerateDisplayItems();
+
+    SMesh *m = &(SK.GetGroup(SS.GW.activeGroup)->displayMesh);
+    if(m->IsEmpty()) {
+        std::cerr << "Active group mesh is empty; nothing to export.";
+        return;
+    }
+
+    FILE *f = ssfopen(filename, "wb");
+    std::cerr << "Export STL:" << filename << "\n";
+    SS.ExportMeshAsStlTo(f, m);
+    fclose(f);
+}
 int main(int argc, char** argv) {
+#ifndef CLIONLY
     /* It would in principle be possible to judiciously use
        Glib::filename_{from,to}_utf8, but it's not really worth
        the effort.
@@ -1586,13 +1633,14 @@ int main(int argc, char** argv) {
        ambiguous. */
     gtk_disable_setlocale();
 
-    /* Are we running from a build directory, as opposed to a global install? */
+    /* Are we running from a build directory, as opposed to a global install?
     if(std::string(argv[0]).find('/') != std::string::npos) {
         resource_dir = argv[0]; // .../src/solvespace
         resource_dir.erase(resource_dir.rfind('/'));
         resource_dir.erase(resource_dir.rfind('/'));
         resource_dir += "/res"; // .../res
     }
+*/
 
     Gtk::Main main(argc, argv);
 
@@ -1606,14 +1654,16 @@ int main(int argc, char** argv) {
     Glib::RefPtr<Gdk::Pixbuf> icon_gdk =
         Gdk::Pixbuf::create_from_data(&icon.data[0], Gdk::COLORSPACE_RGB,
                                       icon.hasAlpha, 8, icon.width, icon.height, icon.stride);
-
     TW.reset(new TextWindowGtk);
     GW.reset(new GraphicsWindowGtk);
+
     InitMainMenu(&GW->get_menubar());
+
     GW->get_menubar().accelerate(*TW);
     TW->set_transient_for(*GW);
     GW->set_icon(icon_gdk);
     TW->set_icon(icon_gdk);
+
 
     TW->show_all();
     GW->show_all();
@@ -1628,6 +1678,9 @@ int main(int argc, char** argv) {
                    GDK_WINDOW_XWINDOW(GW->get_window()->gobj()));
 #endif
 #endif
+#else
+CnfLoad();
+#endif // CLIONLY
 
     SS.Init();
 
@@ -1638,13 +1691,24 @@ int main(int argc, char** argv) {
         }
 
         /* Make sure the argument is valid UTF-8. */
+        #ifndef CLIONLY
         SS.OpenFile(Glib::ustring(argv[1]));
+        #else
+        SS.LoadFromFile(Glib::ustring(argv[1]));
+        //SS.AfterNewFile();
+        // directly export
+        if(argc > 2) {
+            std::cout << "Export\n";
+            exportstl(argv[2]);
+        }
+        #endif
     }
-
+#ifndef CLIONLY
     main.run(*GW);
-
     TW.reset();
     GW.reset();
+
+#endif // CLIONLY
 
     SK.Clear();
     SS.Clear();

@@ -1,0 +1,1447 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="solvespace" />
+		<Option makefile_is_custom="1" />
+		<Option execution_dir="/home/ryanwidi/myproject/solvespace2/solvespace/build" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<MakeCommands>
+			<Build command="$make -f $makefile" />
+			<CompileFile command="$make -f $makefile $file" />
+			<Clean command="$make -f $makefile clean$target" />
+			<DistClean command="$make -f $makefile distclean$target" />
+			<AskRebuildNeeded command="$make -q -f $makefile $target" />
+			<SilentBuild command="$make -f $makefile &gt; $(CMD_NULL)" />
+		</MakeCommands>
+		<Build>
+			<Target title="Release">
+				<Option output="build/src/solvespace" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="/home/ryanwidi/myproject/solvespace2/solvespace/build/src" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+				<MakeCommands>
+					<Build command="$make -f $makefile" />
+					<CompileFile command="$make -f $makefile $file" />
+					<Clean command="$make -f $makefile clean$target" />
+					<DistClean command="$make -f $makefile distclean$target" />
+					<AskRebuildNeeded command="$make -q -f $makefile $target" />
+					<SilentBuild command="$make -f $makefile &gt; $(CMD_NULL)" />
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="build/CMakeFiles/3.2.2/CompilerIdC/CMakeCCompilerId.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="build/CMakeFiles/3.2.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" />
+		<Unit filename="build/CMakeFiles/feature_tests.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="build/CMakeFiles/feature_tests.cxx" />
+		<Unit filename="build/src/config.h" />
+		<Unit filename="exposed/CDemo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libdxfrw/drw_base.h" />
+		<Unit filename="extlib/libdxfrw/drw_classes.cpp" />
+		<Unit filename="extlib/libdxfrw/drw_classes.h" />
+		<Unit filename="extlib/libdxfrw/drw_entities.cpp" />
+		<Unit filename="extlib/libdxfrw/drw_entities.h" />
+		<Unit filename="extlib/libdxfrw/drw_header.cpp" />
+		<Unit filename="extlib/libdxfrw/drw_header.h" />
+		<Unit filename="extlib/libdxfrw/drw_interface.h" />
+		<Unit filename="extlib/libdxfrw/drw_objects.cpp" />
+		<Unit filename="extlib/libdxfrw/drw_objects.h" />
+		<Unit filename="extlib/libdxfrw/intern/drw_cptable932.h" />
+		<Unit filename="extlib/libdxfrw/intern/drw_cptable936.h" />
+		<Unit filename="extlib/libdxfrw/intern/drw_cptable949.h" />
+		<Unit filename="extlib/libdxfrw/intern/drw_cptable950.h" />
+		<Unit filename="extlib/libdxfrw/intern/drw_cptables.h" />
+		<Unit filename="extlib/libdxfrw/intern/drw_dbg.cpp" />
+		<Unit filename="extlib/libdxfrw/intern/drw_dbg.h" />
+		<Unit filename="extlib/libdxfrw/intern/drw_textcodec.cpp" />
+		<Unit filename="extlib/libdxfrw/intern/drw_textcodec.h" />
+		<Unit filename="extlib/libdxfrw/intern/dwgbuffer.cpp" />
+		<Unit filename="extlib/libdxfrw/intern/dwgbuffer.h" />
+		<Unit filename="extlib/libdxfrw/intern/dwgreader.cpp" />
+		<Unit filename="extlib/libdxfrw/intern/dwgreader.h" />
+		<Unit filename="extlib/libdxfrw/intern/dwgreader15.cpp" />
+		<Unit filename="extlib/libdxfrw/intern/dwgreader15.h" />
+		<Unit filename="extlib/libdxfrw/intern/dwgreader18.cpp" />
+		<Unit filename="extlib/libdxfrw/intern/dwgreader18.h" />
+		<Unit filename="extlib/libdxfrw/intern/dwgreader21.cpp" />
+		<Unit filename="extlib/libdxfrw/intern/dwgreader21.h" />
+		<Unit filename="extlib/libdxfrw/intern/dwgreader24.cpp" />
+		<Unit filename="extlib/libdxfrw/intern/dwgreader24.h" />
+		<Unit filename="extlib/libdxfrw/intern/dwgreader27.cpp" />
+		<Unit filename="extlib/libdxfrw/intern/dwgreader27.h" />
+		<Unit filename="extlib/libdxfrw/intern/dwgutil.cpp" />
+		<Unit filename="extlib/libdxfrw/intern/dwgutil.h" />
+		<Unit filename="extlib/libdxfrw/intern/dxfreader.cpp" />
+		<Unit filename="extlib/libdxfrw/intern/dxfreader.h" />
+		<Unit filename="extlib/libdxfrw/intern/dxfwriter.cpp" />
+		<Unit filename="extlib/libdxfrw/intern/dxfwriter.h" />
+		<Unit filename="extlib/libdxfrw/intern/rscodec.cpp" />
+		<Unit filename="extlib/libdxfrw/intern/rscodec.h" />
+		<Unit filename="extlib/libdxfrw/libdwgr.cpp" />
+		<Unit filename="extlib/libdxfrw/libdwgr.h" />
+		<Unit filename="extlib/libdxfrw/libdxfrw.cpp" />
+		<Unit filename="extlib/libdxfrw/libdxfrw.h" />
+		<Unit filename="extlib/libfreetype/builds/amiga/include/config/ftconfig.h" />
+		<Unit filename="extlib/libfreetype/builds/amiga/include/config/ftmodule.h" />
+		<Unit filename="extlib/libfreetype/builds/amiga/src/base/ftdebug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/builds/amiga/src/base/ftsystem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/builds/atari/ATARI.H" />
+		<Unit filename="extlib/libfreetype/builds/mac/ftmac.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/builds/unix/ftsystem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/builds/vms/ftconfig.h" />
+		<Unit filename="extlib/libfreetype/builds/vms/ftsystem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/builds/wince/ftdebug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/builds/windows/ftdebug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/devel/ft2build.h" />
+		<Unit filename="extlib/libfreetype/devel/ftoption.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/config/ftconfig.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/config/ftheader.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/config/ftmodule.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/config/ftoption.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/config/ftstdlib.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/freetype.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftadvanc.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftautoh.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftbbox.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftbdf.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftbitmap.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftbzip2.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftcache.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftcffdrv.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftchapters.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftcid.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/fterrdef.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/fterrors.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftfntfmt.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftgasp.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftglyph.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftgxval.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftgzip.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftimage.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftincrem.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftlcdfil.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftlist.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftlzw.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftmac.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftmm.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftmodapi.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftmoderr.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftotval.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftoutln.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftpfr.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftrender.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftsizes.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftsnames.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftstroke.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftsynth.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftsystem.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/fttrigon.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftttdrv.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/fttypes.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ftwinfnt.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/autohint.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/ftcalc.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/ftdebug.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/ftdriver.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/ftgloadr.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/fthash.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/ftmemory.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/ftobjs.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/ftpic.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/ftrfork.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/ftserv.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/ftstream.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/fttrace.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/ftvalid.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/internal.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/psaux.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/pshints.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/services/svbdf.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/services/svcid.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/services/svfntfmt.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/services/svgldict.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/services/svgxval.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/services/svkern.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/services/svmm.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/services/svotval.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/services/svpfr.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/services/svpostnm.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/services/svprop.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/services/svpscmap.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/services/svpsinfo.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/services/svsfnt.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/services/svttcmap.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/services/svtteng.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/services/svttglyf.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/services/svwinfnt.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/sfnt.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/t1types.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/internal/tttypes.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/t1tables.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ttnameid.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/tttables.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/tttags.h" />
+		<Unit filename="extlib/libfreetype/include/freetype/ttunpat.h" />
+		<Unit filename="extlib/libfreetype/include/ft2build.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/afangles.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/autofit/afangles.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/afblue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/autofit/afblue.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/afcjk.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/autofit/afcjk.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/afcover.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/afdummy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/autofit/afdummy.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/aferrors.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/afglobal.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/autofit/afglobal.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/afhints.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/autofit/afhints.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/afindic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/autofit/afindic.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/aflatin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/autofit/aflatin.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/aflatin2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/autofit/aflatin2.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/afloader.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/autofit/afloader.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/afmodule.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/autofit/afmodule.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/afpic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/autofit/afpic.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/afranges.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/autofit/afranges.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/afscript.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/afshaper.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/autofit/afshaper.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/afstyles.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/aftypes.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/afwarp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/autofit/afwarp.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/afwrtsys.h" />
+		<Unit filename="extlib/libfreetype/src/autofit/autofit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/basepic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/basepic.h" />
+		<Unit filename="extlib/libfreetype/src/base/ftadvanc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftapi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftbase.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftbase.h" />
+		<Unit filename="extlib/libfreetype/src/base/ftbbox.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftbdf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftbitmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftcalc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftcid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftdbgmem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftdebug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftfntfmt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftfstype.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftgasp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftgloadr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftglyph.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftgxval.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/fthash.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftinit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftlcdfil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftmac.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftmm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftobjs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftotval.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftoutln.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftpatent.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftpfr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftpic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftrfork.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftsnames.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftstream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftstroke.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftsynth.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftsystem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/fttrigon.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/fttype1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/ftwinfnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/md5.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/base/md5.h" />
+		<Unit filename="extlib/libfreetype/src/bdf/bdf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/bdf/bdf.h" />
+		<Unit filename="extlib/libfreetype/src/bdf/bdfdrivr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/bdf/bdfdrivr.h" />
+		<Unit filename="extlib/libfreetype/src/bdf/bdferror.h" />
+		<Unit filename="extlib/libfreetype/src/bdf/bdflib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/bzip2/ftbzip2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cache/ftcache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cache/ftcbasic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cache/ftccache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cache/ftccache.h" />
+		<Unit filename="extlib/libfreetype/src/cache/ftccback.h" />
+		<Unit filename="extlib/libfreetype/src/cache/ftccmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cache/ftcerror.h" />
+		<Unit filename="extlib/libfreetype/src/cache/ftcglyph.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cache/ftcglyph.h" />
+		<Unit filename="extlib/libfreetype/src/cache/ftcimage.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cache/ftcimage.h" />
+		<Unit filename="extlib/libfreetype/src/cache/ftcmanag.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cache/ftcmanag.h" />
+		<Unit filename="extlib/libfreetype/src/cache/ftcmru.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cache/ftcmru.h" />
+		<Unit filename="extlib/libfreetype/src/cache/ftcsbits.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cache/ftcsbits.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cf2arrst.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cff/cf2arrst.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cf2blues.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cff/cf2blues.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cf2error.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cff/cf2error.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cf2fixed.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cf2font.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cff/cf2font.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cf2ft.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cff/cf2ft.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cf2glue.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cf2hints.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cff/cf2hints.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cf2intrp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cff/cf2intrp.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cf2read.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cff/cf2read.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cf2stack.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cff/cf2stack.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cf2types.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cff/cffcmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cff/cffcmap.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cffdrivr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cff/cffdrivr.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cfferrs.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cffgload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cff/cffgload.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cffload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cff/cffload.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cffobjs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cff/cffobjs.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cffparse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cff/cffparse.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cffpic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cff/cffpic.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cfftoken.h" />
+		<Unit filename="extlib/libfreetype/src/cff/cfftypes.h" />
+		<Unit filename="extlib/libfreetype/src/cid/ciderrs.h" />
+		<Unit filename="extlib/libfreetype/src/cid/cidgload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cid/cidgload.h" />
+		<Unit filename="extlib/libfreetype/src/cid/cidload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cid/cidload.h" />
+		<Unit filename="extlib/libfreetype/src/cid/cidobjs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cid/cidobjs.h" />
+		<Unit filename="extlib/libfreetype/src/cid/cidparse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cid/cidparse.h" />
+		<Unit filename="extlib/libfreetype/src/cid/cidriver.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/cid/cidriver.h" />
+		<Unit filename="extlib/libfreetype/src/cid/cidtoken.h" />
+		<Unit filename="extlib/libfreetype/src/cid/type1cid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvalid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvalid.h" />
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvbsln.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvcommn.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvcommn.h" />
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxverror.h" />
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvfeat.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvfeat.h" />
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvfgen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvjust.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvkern.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvlcar.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvmod.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvmod.h" />
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvmort.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvmort.h" />
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvmort0.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvmort1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvmort2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvmort4.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvmort5.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvmorx.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvmorx.h" />
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvmorx0.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvmorx1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvmorx2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvmorx4.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvmorx5.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvopbd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvprop.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gxvalid/gxvtrak.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gzip/adler32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gzip/ftgzip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gzip/infblock.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gzip/infblock.h" />
+		<Unit filename="extlib/libfreetype/src/gzip/infcodes.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gzip/infcodes.h" />
+		<Unit filename="extlib/libfreetype/src/gzip/inffixed.h" />
+		<Unit filename="extlib/libfreetype/src/gzip/inflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gzip/inftrees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gzip/inftrees.h" />
+		<Unit filename="extlib/libfreetype/src/gzip/infutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gzip/infutil.h" />
+		<Unit filename="extlib/libfreetype/src/gzip/zconf.h" />
+		<Unit filename="extlib/libfreetype/src/gzip/zlib.h" />
+		<Unit filename="extlib/libfreetype/src/gzip/zutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/gzip/zutil.h" />
+		<Unit filename="extlib/libfreetype/src/lzw/ftlzw.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/lzw/ftzopen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/lzw/ftzopen.h" />
+		<Unit filename="extlib/libfreetype/src/otvalid/otvalid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/otvalid/otvalid.h" />
+		<Unit filename="extlib/libfreetype/src/otvalid/otvbase.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/otvalid/otvcommn.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/otvalid/otvcommn.h" />
+		<Unit filename="extlib/libfreetype/src/otvalid/otverror.h" />
+		<Unit filename="extlib/libfreetype/src/otvalid/otvgdef.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/otvalid/otvgpos.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/otvalid/otvgpos.h" />
+		<Unit filename="extlib/libfreetype/src/otvalid/otvgsub.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/otvalid/otvjstf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/otvalid/otvmath.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/otvalid/otvmod.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/otvalid/otvmod.h" />
+		<Unit filename="extlib/libfreetype/src/pcf/pcf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/pcf/pcf.h" />
+		<Unit filename="extlib/libfreetype/src/pcf/pcfdrivr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/pcf/pcfdrivr.h" />
+		<Unit filename="extlib/libfreetype/src/pcf/pcferror.h" />
+		<Unit filename="extlib/libfreetype/src/pcf/pcfread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/pcf/pcfread.h" />
+		<Unit filename="extlib/libfreetype/src/pcf/pcfutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/pcf/pcfutil.h" />
+		<Unit filename="extlib/libfreetype/src/pfr/pfr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/pfr/pfrcmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/pfr/pfrcmap.h" />
+		<Unit filename="extlib/libfreetype/src/pfr/pfrdrivr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/pfr/pfrdrivr.h" />
+		<Unit filename="extlib/libfreetype/src/pfr/pfrerror.h" />
+		<Unit filename="extlib/libfreetype/src/pfr/pfrgload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/pfr/pfrgload.h" />
+		<Unit filename="extlib/libfreetype/src/pfr/pfrload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/pfr/pfrload.h" />
+		<Unit filename="extlib/libfreetype/src/pfr/pfrobjs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/pfr/pfrobjs.h" />
+		<Unit filename="extlib/libfreetype/src/pfr/pfrsbit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/pfr/pfrsbit.h" />
+		<Unit filename="extlib/libfreetype/src/pfr/pfrtypes.h" />
+		<Unit filename="extlib/libfreetype/src/psaux/afmparse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/psaux/afmparse.h" />
+		<Unit filename="extlib/libfreetype/src/psaux/psaux.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/psaux/psauxerr.h" />
+		<Unit filename="extlib/libfreetype/src/psaux/psauxmod.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/psaux/psauxmod.h" />
+		<Unit filename="extlib/libfreetype/src/psaux/psconv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/psaux/psconv.h" />
+		<Unit filename="extlib/libfreetype/src/psaux/psobjs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/psaux/psobjs.h" />
+		<Unit filename="extlib/libfreetype/src/psaux/t1cmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/psaux/t1cmap.h" />
+		<Unit filename="extlib/libfreetype/src/psaux/t1decode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/psaux/t1decode.h" />
+		<Unit filename="extlib/libfreetype/src/pshinter/pshalgo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/pshinter/pshalgo.h" />
+		<Unit filename="extlib/libfreetype/src/pshinter/pshglob.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/pshinter/pshglob.h" />
+		<Unit filename="extlib/libfreetype/src/pshinter/pshinter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/pshinter/pshmod.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/pshinter/pshmod.h" />
+		<Unit filename="extlib/libfreetype/src/pshinter/pshnterr.h" />
+		<Unit filename="extlib/libfreetype/src/pshinter/pshpic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/pshinter/pshpic.h" />
+		<Unit filename="extlib/libfreetype/src/pshinter/pshrec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/pshinter/pshrec.h" />
+		<Unit filename="extlib/libfreetype/src/psnames/psmodule.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/psnames/psmodule.h" />
+		<Unit filename="extlib/libfreetype/src/psnames/psnamerr.h" />
+		<Unit filename="extlib/libfreetype/src/psnames/psnames.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/psnames/pspic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/psnames/pspic.h" />
+		<Unit filename="extlib/libfreetype/src/psnames/pstables.h" />
+		<Unit filename="extlib/libfreetype/src/raster/ftmisc.h" />
+		<Unit filename="extlib/libfreetype/src/raster/ftraster.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/raster/ftraster.h" />
+		<Unit filename="extlib/libfreetype/src/raster/ftrend1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/raster/ftrend1.h" />
+		<Unit filename="extlib/libfreetype/src/raster/raster.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/raster/rasterrs.h" />
+		<Unit filename="extlib/libfreetype/src/raster/rastpic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/raster/rastpic.h" />
+		<Unit filename="extlib/libfreetype/src/sfnt/pngshim.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/sfnt/pngshim.h" />
+		<Unit filename="extlib/libfreetype/src/sfnt/sfdriver.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/sfnt/sfdriver.h" />
+		<Unit filename="extlib/libfreetype/src/sfnt/sferrors.h" />
+		<Unit filename="extlib/libfreetype/src/sfnt/sfnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/sfnt/sfntpic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/sfnt/sfntpic.h" />
+		<Unit filename="extlib/libfreetype/src/sfnt/sfobjs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/sfnt/sfobjs.h" />
+		<Unit filename="extlib/libfreetype/src/sfnt/ttbdf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/sfnt/ttbdf.h" />
+		<Unit filename="extlib/libfreetype/src/sfnt/ttcmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/sfnt/ttcmap.h" />
+		<Unit filename="extlib/libfreetype/src/sfnt/ttcmapc.h" />
+		<Unit filename="extlib/libfreetype/src/sfnt/ttkern.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/sfnt/ttkern.h" />
+		<Unit filename="extlib/libfreetype/src/sfnt/ttload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/sfnt/ttload.h" />
+		<Unit filename="extlib/libfreetype/src/sfnt/ttmtx.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/sfnt/ttmtx.h" />
+		<Unit filename="extlib/libfreetype/src/sfnt/ttpost.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/sfnt/ttpost.h" />
+		<Unit filename="extlib/libfreetype/src/sfnt/ttsbit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/sfnt/ttsbit.h" />
+		<Unit filename="extlib/libfreetype/src/smooth/ftgrays.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/smooth/ftgrays.h" />
+		<Unit filename="extlib/libfreetype/src/smooth/ftsmerrs.h" />
+		<Unit filename="extlib/libfreetype/src/smooth/ftsmooth.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/smooth/ftsmooth.h" />
+		<Unit filename="extlib/libfreetype/src/smooth/ftspic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/smooth/ftspic.h" />
+		<Unit filename="extlib/libfreetype/src/smooth/smooth.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/tools/apinames.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/tools/ftfuzzer/ftfuzzer.cc" />
+		<Unit filename="extlib/libfreetype/src/tools/ftfuzzer/ftmutator.cc" />
+		<Unit filename="extlib/libfreetype/src/tools/ftfuzzer/runinput.cc" />
+		<Unit filename="extlib/libfreetype/src/tools/ftrandom/ftrandom.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/tools/test_afm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/tools/test_bbox.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/tools/test_trig.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/truetype/truetype.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/truetype/ttdriver.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/truetype/ttdriver.h" />
+		<Unit filename="extlib/libfreetype/src/truetype/tterrors.h" />
+		<Unit filename="extlib/libfreetype/src/truetype/ttgload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/truetype/ttgload.h" />
+		<Unit filename="extlib/libfreetype/src/truetype/ttgxvar.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/truetype/ttgxvar.h" />
+		<Unit filename="extlib/libfreetype/src/truetype/ttinterp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/truetype/ttinterp.h" />
+		<Unit filename="extlib/libfreetype/src/truetype/ttobjs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/truetype/ttobjs.h" />
+		<Unit filename="extlib/libfreetype/src/truetype/ttpic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/truetype/ttpic.h" />
+		<Unit filename="extlib/libfreetype/src/truetype/ttpload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/truetype/ttpload.h" />
+		<Unit filename="extlib/libfreetype/src/truetype/ttsubpix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/truetype/ttsubpix.h" />
+		<Unit filename="extlib/libfreetype/src/type1/t1afm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/type1/t1afm.h" />
+		<Unit filename="extlib/libfreetype/src/type1/t1driver.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/type1/t1driver.h" />
+		<Unit filename="extlib/libfreetype/src/type1/t1errors.h" />
+		<Unit filename="extlib/libfreetype/src/type1/t1gload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/type1/t1gload.h" />
+		<Unit filename="extlib/libfreetype/src/type1/t1load.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/type1/t1load.h" />
+		<Unit filename="extlib/libfreetype/src/type1/t1objs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/type1/t1objs.h" />
+		<Unit filename="extlib/libfreetype/src/type1/t1parse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/type1/t1parse.h" />
+		<Unit filename="extlib/libfreetype/src/type1/t1tokens.h" />
+		<Unit filename="extlib/libfreetype/src/type1/type1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/type42/t42drivr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/type42/t42drivr.h" />
+		<Unit filename="extlib/libfreetype/src/type42/t42error.h" />
+		<Unit filename="extlib/libfreetype/src/type42/t42objs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/type42/t42objs.h" />
+		<Unit filename="extlib/libfreetype/src/type42/t42parse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/type42/t42parse.h" />
+		<Unit filename="extlib/libfreetype/src/type42/t42types.h" />
+		<Unit filename="extlib/libfreetype/src/type42/type42.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/winfonts/fnterrs.h" />
+		<Unit filename="extlib/libfreetype/src/winfonts/winfnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libfreetype/src/winfonts/winfnt.h" />
+		<Unit filename="extlib/libpng/arm/arm_init.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/arm/filter_neon.S" />
+		<Unit filename="extlib/libpng/arm/filter_neon_intrinsics.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/arm-neon/android-ndk.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/arm-neon/linux-auxv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/arm-neon/linux.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/examples/iccfrompng.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/examples/pngpixel.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/examples/pngtopng.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/examples/simpleover.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/gregbook/readpng.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/gregbook/readpng.h" />
+		<Unit filename="extlib/libpng/contrib/gregbook/readpng2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/gregbook/readpng2.h" />
+		<Unit filename="extlib/libpng/contrib/gregbook/readppm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/gregbook/rpng-win.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/gregbook/rpng-x.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/gregbook/rpng2-win.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/gregbook/rpng2-x.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/gregbook/wpng.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/gregbook/writepng.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/gregbook/writepng.h" />
+		<Unit filename="extlib/libpng/contrib/libtests/fakepng.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/libtests/makepng.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/libtests/pngimage.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/libtests/pngstest-errors.h" />
+		<Unit filename="extlib/libpng/contrib/libtests/pngstest.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/libtests/pngunknown.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/libtests/pngvalid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/libtests/readpng.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/libtests/tarith.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/libtests/timepng.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/pngminim/decoder/pngusr.h" />
+		<Unit filename="extlib/libpng/contrib/pngminim/encoder/pngusr.h" />
+		<Unit filename="extlib/libpng/contrib/pngminim/preader/pngusr.h" />
+		<Unit filename="extlib/libpng/contrib/pngminus/png2pnm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/pngminus/pnm2png.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/tools/checksum-icc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/tools/cvtcolor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/tools/genpng.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/tools/makesRGB.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/tools/png-fix-itxt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/tools/pngfix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/tools/sRGB.h" />
+		<Unit filename="extlib/libpng/contrib/visupng/PngFile.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/visupng/PngFile.h" />
+		<Unit filename="extlib/libpng/contrib/visupng/VisualPng.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/contrib/visupng/VisualPng.rc" />
+		<Unit filename="extlib/libpng/contrib/visupng/cexcept.h" />
+		<Unit filename="extlib/libpng/contrib/visupng/resource.h" />
+		<Unit filename="extlib/libpng/example.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/png.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/png.h" />
+		<Unit filename="extlib/libpng/pngconf.h" />
+		<Unit filename="extlib/libpng/pngdebug.h" />
+		<Unit filename="extlib/libpng/pngerror.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/pngget.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/pnginfo.h" />
+		<Unit filename="extlib/libpng/pngmem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/pngpread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/pngpriv.h" />
+		<Unit filename="extlib/libpng/pngread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/pngrio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/pngrtran.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/pngrutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/pngset.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/pngstruct.h" />
+		<Unit filename="extlib/libpng/pngtest.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/pngtrans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/pngwio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/pngwrite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/pngwtran.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/pngwutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/scripts/def.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/scripts/intprefix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/scripts/pngwin.rc" />
+		<Unit filename="extlib/libpng/scripts/prefix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/scripts/sym.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/scripts/symbols.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/libpng/scripts/vers.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/si/si.h" />
+		<Unit filename="extlib/si/siSync.h" />
+		<Unit filename="extlib/si/siSyncPriv.h" />
+		<Unit filename="extlib/si/siapp.h" />
+		<Unit filename="extlib/si/spwdata.h" />
+		<Unit filename="extlib/si/spwerror.h" />
+		<Unit filename="extlib/si/spwmacro.h" />
+		<Unit filename="extlib/zlib/adler32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/compress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/contrib/amd64/amd64-match.S" />
+		<Unit filename="extlib/zlib/contrib/asm686/match.S" />
+		<Unit filename="extlib/zlib/contrib/blast/blast.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/contrib/blast/blast.h" />
+		<Unit filename="extlib/zlib/contrib/gcc_gvmat64/gvmat64.S" />
+		<Unit filename="extlib/zlib/contrib/infback9/infback9.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/contrib/infback9/infback9.h" />
+		<Unit filename="extlib/zlib/contrib/infback9/inffix9.h" />
+		<Unit filename="extlib/zlib/contrib/infback9/inflate9.h" />
+		<Unit filename="extlib/zlib/contrib/infback9/inftree9.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/contrib/infback9/inftree9.h" />
+		<Unit filename="extlib/zlib/contrib/inflate86/inffas86.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/contrib/inflate86/inffast.S" />
+		<Unit filename="extlib/zlib/contrib/iostream/test.cpp" />
+		<Unit filename="extlib/zlib/contrib/iostream/zfstream.cpp" />
+		<Unit filename="extlib/zlib/contrib/iostream/zfstream.h" />
+		<Unit filename="extlib/zlib/contrib/iostream2/zstream.h" />
+		<Unit filename="extlib/zlib/contrib/iostream2/zstream_test.cpp" />
+		<Unit filename="extlib/zlib/contrib/iostream3/test.cc" />
+		<Unit filename="extlib/zlib/contrib/iostream3/zfstream.cc" />
+		<Unit filename="extlib/zlib/contrib/iostream3/zfstream.h" />
+		<Unit filename="extlib/zlib/contrib/masmx64/gvmat64.asm" />
+		<Unit filename="extlib/zlib/contrib/masmx64/inffas8664.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/contrib/masmx64/inffasx64.asm" />
+		<Unit filename="extlib/zlib/contrib/masmx86/inffas32.asm" />
+		<Unit filename="extlib/zlib/contrib/masmx86/match686.asm" />
+		<Unit filename="extlib/zlib/contrib/minizip/crypt.h" />
+		<Unit filename="extlib/zlib/contrib/minizip/ioapi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/contrib/minizip/ioapi.h" />
+		<Unit filename="extlib/zlib/contrib/minizip/iowin32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/contrib/minizip/iowin32.h" />
+		<Unit filename="extlib/zlib/contrib/minizip/miniunz.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/contrib/minizip/minizip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/contrib/minizip/mztools.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/contrib/minizip/mztools.h" />
+		<Unit filename="extlib/zlib/contrib/minizip/unzip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/contrib/minizip/unzip.h" />
+		<Unit filename="extlib/zlib/contrib/minizip/zip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/contrib/minizip/zip.h" />
+		<Unit filename="extlib/zlib/contrib/puff/puff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/contrib/puff/puff.h" />
+		<Unit filename="extlib/zlib/contrib/puff/pufftest.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/contrib/testzlib/testzlib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/contrib/untgz/untgz.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/contrib/vstudio/vc10/zlib.rc" />
+		<Unit filename="extlib/zlib/contrib/vstudio/vc11/zlib.rc" />
+		<Unit filename="extlib/zlib/contrib/vstudio/vc9/zlib.rc" />
+		<Unit filename="extlib/zlib/crc32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/crc32.h" />
+		<Unit filename="extlib/zlib/deflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/deflate.h" />
+		<Unit filename="extlib/zlib/examples/enough.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/examples/fitblk.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/examples/gun.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/examples/gzappend.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/examples/gzjoin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/examples/gzlog.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/examples/gzlog.h" />
+		<Unit filename="extlib/zlib/examples/zpipe.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/examples/zran.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/gzclose.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/gzguts.h" />
+		<Unit filename="extlib/zlib/gzlib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/gzread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/gzwrite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/infback.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/inffast.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/inffast.h" />
+		<Unit filename="extlib/zlib/inffixed.h" />
+		<Unit filename="extlib/zlib/inflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/inflate.h" />
+		<Unit filename="extlib/zlib/inftrees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/inftrees.h" />
+		<Unit filename="extlib/zlib/test/example.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/test/infcover.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/test/minigzip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/trees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/trees.h" />
+		<Unit filename="extlib/zlib/uncompr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/win32/zlib1.rc" />
+		<Unit filename="extlib/zlib/zconf.h" />
+		<Unit filename="extlib/zlib/zlib.h" />
+		<Unit filename="extlib/zlib/zutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extlib/zlib/zutil.h" />
+		<Unit filename="include/slvs.h" />
+		<Unit filename="src/bsp.cpp" />
+		<Unit filename="src/clipboard.cpp" />
+		<Unit filename="src/confscreen.cpp" />
+		<Unit filename="src/constraint.cpp" />
+		<Unit filename="src/constrainteq.cpp" />
+		<Unit filename="src/describescreen.cpp" />
+		<Unit filename="src/draw.cpp" />
+		<Unit filename="src/drawconstraint.cpp" />
+		<Unit filename="src/drawentity.cpp" />
+		<Unit filename="src/dsc.h" />
+		<Unit filename="src/entity.cpp" />
+		<Unit filename="src/export.cpp" />
+		<Unit filename="src/exportstep.cpp" />
+		<Unit filename="src/exportvector.cpp" />
+		<Unit filename="src/expr.cpp" />
+		<Unit filename="src/expr.h" />
+		<Unit filename="src/file.cpp" />
+		<Unit filename="src/generate.cpp" />
+		<Unit filename="src/glhelper.cpp" />
+		<Unit filename="src/graphicswin.cpp" />
+		<Unit filename="src/group.cpp" />
+		<Unit filename="src/groupmesh.cpp" />
+		<Unit filename="src/importdxf.cpp" />
+		<Unit filename="src/lib.cpp" />
+		<Unit filename="src/mesh.cpp" />
+		<Unit filename="src/modify.cpp" />
+		<Unit filename="src/mouse.cpp" />
+		<Unit filename="src/platform/gloffscreen.cpp" />
+		<Unit filename="src/platform/gloffscreen.h" />
+		<Unit filename="src/platform/gtkmain.cpp" />
+		<Unit filename="src/platform/unixutil.cpp" />
+		<Unit filename="src/platform/w32main.cpp" />
+		<Unit filename="src/platform/w32util.cpp" />
+		<Unit filename="src/polygon.cpp" />
+		<Unit filename="src/polygon.h" />
+		<Unit filename="src/request.cpp" />
+		<Unit filename="src/resource.cpp" />
+		<Unit filename="src/resource.h" />
+		<Unit filename="src/sketch.h" />
+		<Unit filename="src/solvespace.cpp" />
+		<Unit filename="src/solvespace.h" />
+		<Unit filename="src/srf/boolean.cpp" />
+		<Unit filename="src/srf/curve.cpp" />
+		<Unit filename="src/srf/merge.cpp" />
+		<Unit filename="src/srf/ratpoly.cpp" />
+		<Unit filename="src/srf/raycast.cpp" />
+		<Unit filename="src/srf/surface.cpp" />
+		<Unit filename="src/srf/surface.h" />
+		<Unit filename="src/srf/surfinter.cpp" />
+		<Unit filename="src/srf/triangulate.cpp" />
+		<Unit filename="src/style.cpp" />
+		<Unit filename="src/system.cpp" />
+		<Unit filename="src/textscreens.cpp" />
+		<Unit filename="src/textwin.cpp" />
+		<Unit filename="src/toolbar.cpp" />
+		<Unit filename="src/ttf.cpp" />
+		<Unit filename="src/ttf.h" />
+		<Unit filename="src/ui.h" />
+		<Unit filename="src/undoredo.cpp" />
+		<Unit filename="src/util.cpp" />
+		<Unit filename="src/view.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

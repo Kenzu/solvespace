@@ -14,7 +14,7 @@ std::string SolveSpace::RecentFile[MAX_RECENT] = {};
 
 void SolveSpaceUI::Init() {
     // Check that the resource system works.
-    dbp("%s", LoadString("banner.txt").data());
+    //dbp("%s", LoadString("banner.txt").data());
 
     SS.tangentArcRadius = 10.0;
 
@@ -97,7 +97,11 @@ void SolveSpaceUI::Init() {
     for(size_t i = 0; i < MAX_RECENT; i++) {
         RecentFile[i] = CnfThawString("", "RecentFile_" + std::to_string(i));
     }
-    RefreshRecentMenus();
+    #ifndef CLIONLY
+        RefreshRecentMenus();
+        NewFile();
+        AfterNewFile();
+    #endif
     // Autosave timer
     autosaveInterval = CnfThawInt(5, "AutosaveInterval");
 
@@ -107,8 +111,7 @@ void SolveSpaceUI::Init() {
 
     SetAutosaveTimerFor(autosaveInterval);
 
-    NewFile();
-    AfterNewFile();
+
 }
 
 bool SolveSpaceUI::LoadAutosaveFor(const std::string &filename) {
@@ -316,6 +319,7 @@ void SolveSpaceUI::AfterNewFile() {
     SS.GW.projUp    = Vector::From(0, 1, 0);
 
     GenerateAll(Generate::REGEN);
+
 
     TW.Init();
     GW.Init();

@@ -606,62 +606,82 @@ void GraphicsWindow::SplitLinesOrCurves() {
     }
 
     GroupSelection();
-    if(!(gs.n == 2 &&(gs.lineSegments +
+    if(!(gs.n == 2 &&(gs.points +
+                      gs.lineSegments +
                       gs.circlesOrArcs +
                       gs.cubics +
                       gs.periodicCubics) == 2))
     {
         Error("Select two entities that intersect each other (e.g. two lines "
-              "or two circles or a circle and a line).");
+              "or two circles or a circle and a line) or point with line.");
         return;
     }
 
-    hEntity ha = gs.entity[0],
-            hb = gs.entity[1];
-    Entity *ea = SK.GetEntity(ha),
-           *eb = SK.GetEntity(hb);
 
-    // Compute the possibly-rational Bezier curves for each of these entities
-    SBezierList sbla, sblb;
-    sbla = {};
-    sblb = {};
-    ea->GenerateBezierCurves(&sbla);
-    eb->GenerateBezierCurves(&sblb);
-    // and then compute the points where they intersect, based on those curves.
-    SPointList inters = {};
-    sbla.AllIntersectionsWith(&sblb, &inters);
+    if ((gs.points==1) && (gs.lineSegments==1)) {
+      // modif ryan
+      Entity *e = SK.GetEntity(gs.point[0]);
+      SS.TW.shown.paste.origin = e->PointGetNum();
+      Vector pi = Vector::From(SS.TW.shown.paste.origin.x, SS.TW.shown.paste.origin.y, SS.TW.shown.paste.origin.z);
+      hEntity ha = gs.entity[0];
 
-    if(inters.l.n > 0) {
-        Vector pi = Vector::From(0, 0, 0);
-        // If there's multiple points, then take the one closest to the
-        // mouse pointer.
-        double dmin = VERY_POSITIVE;
-        SPoint *sp;
-        for(sp = inters.l.First(); sp; sp = inters.l.NextAfter(sp)) {
-            double d = ProjectPoint(sp->p).DistanceTo(currentMousePosition);
-            if(d < dmin) {
-                dmin = d;
-                pi = sp->p;
-            }
-        }
-
-        SS.UndoRemember();
-        hEntity hia = SplitEntity(ha, pi),
-                hib = SplitEntity(hb, pi);
-        // SplitEntity adds the coincident constraints to join the split halves
-        // of each original entity; and then we add the constraint to join
-        // the two entities together at the split point.
-        if(hia.v && hib.v) {
-            Constraint::ConstrainCoincident(hia, hib);
-        }
+      SS.UndoRemember();
+      hEntity hia = SplitEntity(ha, pi);
+      
+      /*SK.request.ClearTags();
+      SK.constraint.ClearTags();
+      hRequest r = e->request();
+      SK.request.Tag(r, 1);
+      DeleteTaggedRequests();
+      //SS.UndoRemember();
+      */
     } else {
-        Error("Can't split; no intersection found.");
-    }
+      hEntity ha = gs.entity[0],
+              hb = gs.entity[1];
+      Entity *ea = SK.GetEntity(ha),
+             *eb = SK.GetEntity(hb);
+      // Compute the possibly-rational Bezier curves for each of these entities
+      SBezierList sbla, sblb;
+      sbla = {};
+      sblb = {};
+      ea->GenerateBezierCurves(&sbla);
+      eb->GenerateBezierCurves(&sblb);
+      // and then compute the points where they intersect, based on those curves.
+      SPointList inters = {};
+      sbla.AllIntersectionsWith(&sblb, &inters);
 
-    // All done, clean up and regenerate.
+      if(inters.l.n > 0) {
+          Vector pi = Vector::From(0, 0, 0);
+          // If there's multiple points, then take the one closest to the
+          // mouse pointer.
+          double dmin = VERY_POSITIVE;
+          SPoint *sp;
+          for(sp = inters.l.First(); sp; sp = inters.l.NextAfter(sp)) {
+              double d = ProjectPoint(sp->p).DistanceTo(currentMousePosition);
+              if(d < dmin) {
+                  dmin = d;
+                  pi = sp->p;
+              }
+          }
+
+          SS.UndoRemember();
+          hEntity hia = SplitEntity(ha, pi),
+                  hib = SplitEntity(hb, pi);
+          // SplitEntity adds the coincident constraints to join the split halves
+          // of each original entity; and then we add the constraint to join
+          // the two entities together at the split point.
+          if(hia.v && hib.v) {
+              Constraint::ConstrainCoincident(hia, hib);
+          }
+      } else {
+          Error("Can't split; no intersection found.");
+      }
     inters.Clear();
     sbla.Clear();
     sblb.Clear();
+    }
+    // All done, clean up and regenerate.
+
     ClearSelection();
     SS.ScheduleGenerateAll();
 }
