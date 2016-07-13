@@ -25,7 +25,7 @@
 #include <map>
 #include <set>
 
-#define CLIONLY
+//#define CLIONLY
 
 #ifdef WIN32
 #   include <windows.h> // required by GL headers
