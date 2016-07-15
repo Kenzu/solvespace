@@ -1173,7 +1173,7 @@ bool GetSaveFile(std::string *filename, const std::string &activeOrEmpty,
     std::string active = ConvertFilters(activeOrEmpty, filters, &chooser);
 
     chooser.set_current_folder(CnfThawString("", "FileChooserPath"));
-    chooser.set_current_name(std::string("untitled.") + active);
+    chooser.set_current_name(std::string(SS.rawname) + active);
 
     /* Gtk's dialog doesn't change the extension when you change the filter,
        and makes it extremely hard to do so. Gtk is garbage. */

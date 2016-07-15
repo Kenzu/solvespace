@@ -5,6 +5,8 @@
 //-----------------------------------------------------------------------------
 #include "solvespace.h"
 
+class data;
+class pixmap;
 namespace SolveSpace {
 
 static bool ColorLocked;
@@ -564,19 +566,32 @@ void ssglDepthRangeLockToFront(bool yes)
     }
 }
 
-void ssglDrawPixmap(const Pixmap &pixmap, Vector a, Vector b, Vector c, Vector d) {
-    //glBindTexture(GL_TEXTURE_2D, TEXTURE_DRAW_PIXELS);
-    ssglBindTexture(GL_TEXTURE_2D, &TEXTURE_DRAW_PIXELS);
+void ssglDrawPixmap( Pixmap &pixmap, Vector a, Vector b, Vector c, Vector d) {
+    glBindTexture(GL_TEXTURE_2D, TEXTURE_DRAW_PIXELS);
+    //GLuint tex;
+    //glGenTextures(GL_TEXTURE_2D, &tex);
+    //glBindTexture(GL_TEXTURE_2D, tex);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,     GL_CLAMP);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,     GL_CLAMP);
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
+ /*   float pixels[] = {
+        0.0f, 0.0f, 0.0f,   1.0f, 1.0f, 1.0f,
+        1.0f, 1.0f, 1.0f,   0.0f, 0.0f, 0.0f
+    };
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 2, 2, 0, GL_RGB, GL_FLOAT, pixels);
+*/
     int format = pixmap.hasAlpha ? GL_RGBA : GL_RGB;
-    glTexImage2D(GL_TEXTURE_2D, 0, format, pixmap.width, pixmap.height, 0,
+    glTexImage2D(GL_TEXTURE_2D, 0, format, /*pixmap.width*/24, /*pixmap.height*/24, 0,
                  format, GL_UNSIGNED_BYTE, &pixmap.data[0]);
-
+    unsigned char *w=&pixmap.data[0];
+    *w++=0xff;
+    *w++=0xff;
+    *w++=0xff;
+    *w++=0xff;
+    *w++=0xff;
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_QUADS);
         glTexCoord2d(0.0, 0.0);
@@ -591,7 +606,7 @@ void ssglDrawPixmap(const Pixmap &pixmap, Vector a, Vector b, Vector c, Vector d
     glDisable(GL_TEXTURE_2D);
 }
 
-void ssglDrawPixmap(const Pixmap &pixmap, Point2d o, bool flip) {
+void ssglDrawPixmap( Pixmap &pixmap, Point2d o, bool flip) {
     double w = (double)pixmap.width, h = (double)pixmap.height;
     if(!flip) {
         Vector a = { o.x,     o.y,     0.0 },
@@ -634,8 +649,8 @@ void ssglInitializeBitmapFont()
 {
     LoadBitmapFont();
 
-    //glBindTexture(GL_TEXTURE_2D, TEXTURE_BITMAP_FONT);
-    ssglBindTexture(GL_TEXTURE_2D, &TEXTURE_BITMAP_FONT);
+    glBindTexture(GL_TEXTURE_2D, TEXTURE_BITMAP_FONT);
+    //ssglBindTexture(GL_TEXTURE_2D, &TEXTURE_BITMAP_FONT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,     GL_CLAMP);
@@ -646,13 +661,15 @@ void ssglInitializeBitmapFont()
                  0, GL_ALPHA, GL_UNSIGNED_BYTE, &BuiltinBitmapFont.texture[0]);
 }
 
-// add ssgl
+/*/ add ssgl
 void ssglBindTexture(GLenum target, GLuint *id) {
      if(*id == 0) {
          glGenTextures(1, id);
      }
      glBindTexture(target, *id);
 }
+ * */
+
 int ssglBitmapCharWidth(char32_t codepoint) {
     if(codepoint >= 0xe000 && codepoint <= 0xefff) {
         // These are special-cased because checkboxes predate support for 2 cell wide

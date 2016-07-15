@@ -4,7 +4,7 @@
     version="1.0.0.0"
     processorArchitecture="X86"
     name="JonathanWesthues.3dCAD.SolveSpace"
-    type="win32"
+    type="console"
 />
 <description>Parametric 3d CAD tool.</description>
 <dependency>

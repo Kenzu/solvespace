@@ -677,8 +677,8 @@ bool TextWindow::DrawOrHitTestColorPicker(DrawOrHitHow how, bool leftDown,
     hym = hy + PITCH*1 + SIZE;
     // The one-dimensional thing to pick the color's value
     if(how == PAINT) {
-        //glBindTexture(GL_TEXTURE_2D, TEXTURE_COLOR_PICKER_1D);
-        ssglBindTexture(GL_TEXTURE_2D, &TEXTURE_COLOR_PICKER_1D);
+        glBindTexture(GL_TEXTURE_2D, TEXTURE_COLOR_PICKER_1D);
+        //ssglBindTexture(GL_TEXTURE_2D, &TEXTURE_COLOR_PICKER_1D);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,     GL_CLAMP);
@@ -735,8 +735,8 @@ bool TextWindow::DrawOrHitTestColorPicker(DrawOrHitHow how, bool leftDown,
     hym = hy + PITCH*6 + SIZE;
     // Two-dimensional thing to pick a color by hue and saturation
     if(how == PAINT) {
-        //glBindTexture(GL_TEXTURE_2D, TEXTURE_COLOR_PICKER_2D);
-        ssglBindTexture(GL_TEXTURE_2D, &TEXTURE_COLOR_PICKER_2D);
+        glBindTexture(GL_TEXTURE_2D, TEXTURE_COLOR_PICKER_2D);
+        //ssglBindTexture(GL_TEXTURE_2D, &TEXTURE_COLOR_PICKER_2D);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,     GL_CLAMP);

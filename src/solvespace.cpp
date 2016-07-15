@@ -135,6 +135,9 @@ bool SolveSpaceUI::OpenFile(const std::string &filename) {
     bool fileLoaded = autosaveLoaded || LoadFromFile(filename);
     if(fileLoaded)
         saveFile = filename;
+        rawname = filename;
+        rawname.erase(0,rawname.find_last_of("/")+1);
+        rawname.erase(rawname.find_last_of(".")+1, 200);        
     bool success = fileLoaded && ReloadAllImported(/*canCancel=*/true);
     if(success) {
         AddToRecentList(filename);
@@ -473,14 +476,14 @@ void SolveSpaceUI::MenuFile(Command id) {
             break;
 
         case Command::EXPORT_PNG: {
-            std::string exportFile;
+            std::string exportFile=SS.rawname;
             if(!GetSaveFile(&exportFile, "", PngFileFilter)) break;
             SS.ExportAsPngTo(exportFile);
             break;
         }
 
         case Command::EXPORT_VIEW: {
-            std::string exportFile;
+            std::string exportFile=SS.rawname;
             if(!GetSaveFile(&exportFile, CnfThawString("", "ViewExportFormat"),
                             VectorFileFilter)) break;
             CnfFreezeString(Extension(exportFile), "ViewExportFormat");
@@ -502,7 +505,7 @@ void SolveSpaceUI::MenuFile(Command id) {
         }
 
         case Command::EXPORT_WIREFRAME: {
-            std::string exportFile;
+            std::string exportFile=SS.rawname;
             if(!GetSaveFile(&exportFile, CnfThawString("", "WireframeExportFormat"),
                             Vector3dFileFilter)) break;
             CnfFreezeString(Extension(exportFile), "WireframeExportFormat");
@@ -512,7 +515,7 @@ void SolveSpaceUI::MenuFile(Command id) {
         }
 
         case Command::EXPORT_SECTION: {
-            std::string exportFile;
+            std::string exportFile=SS.rawname;
             if(!GetSaveFile(&exportFile, CnfThawString("", "SectionExportFormat"),
                             VectorFileFilter)) break;
             CnfFreezeString(Extension(exportFile), "SectionExportFormat");
@@ -522,8 +525,8 @@ void SolveSpaceUI::MenuFile(Command id) {
         }
 
         case Command::EXPORT_MESH: {
-            std::string exportFile;
-            if(!GetSaveFile(&exportFile, CnfThawString("", "MeshExportFormat"),
+            std::string exportFile=SS.rawname;
+            if(!GetSaveFile(&exportFile, CnfThawString(exportFile, "MeshExportFormat"),
                             MeshFileFilter)) break;
             CnfFreezeString(Extension(exportFile), "MeshExportFormat");
 
@@ -532,7 +535,7 @@ void SolveSpaceUI::MenuFile(Command id) {
         }
 
         case Command::EXPORT_SURFACES: {
-            std::string exportFile;
+            std::string exportFile=SS.rawname;
             if(!GetSaveFile(&exportFile, CnfThawString("", "SurfacesExportFormat"),
                             SurfaceFileFilter)) break;
             CnfFreezeString(Extension(exportFile), "SurfacesExportFormat");

@@ -386,27 +386,29 @@ void ssglColorRGB(RgbaColor rgb);
 void ssglColorRGBa(RgbaColor rgb, double a);
 void ssglDepthRangeOffset(int units);
 void ssglDepthRangeLockToFront(bool yes);
-void ssglDrawPixmap(const Pixmap &pixmap, Vector a, Vector b, Vector c, Vector d);
-void ssglDrawPixmap(const Pixmap &pixmap, Point2d o, bool flip = false);
+void ssglDrawPixmap( Pixmap &pixmap, Vector a, Vector b, Vector c, Vector d);
+void ssglDrawPixmap( Pixmap &pixmap, Point2d o, bool flip = false);
 void ssglInitializeBitmapFont();
 void ssglBitmapText(const std::string &str, Vector p);
 double ssglBitmapCharQuad(char32_t chr, double x, double y);
 int ssglBitmapCharWidth(char32_t chr);
 
-/*
+
 #define TEXTURE_BACKGROUND_IMG  10
 #define TEXTURE_DRAW_PIXELS     20
 #define TEXTURE_COLOR_PICKER_2D 30
 #define TEXTURE_COLOR_PICKER_1D 40
 #define TEXTURE_BITMAP_FONT     50
-*/
-void ssglBindTexture(GLenum target, GLuint *id);
-  
+/*
 static GLuint TEXTURE_BACKGROUND_IMG       = 0;
 static GLuint TEXTURE_DRAW_PIXELS          = 0;
 static GLuint TEXTURE_COLOR_PICKER_2D      = 0;
 static GLuint TEXTURE_COLOR_PICKER_1D      = 0;
 static GLuint TEXTURE_BITMAP_FONT          = 0;
+void ssglBindTexture(GLenum target, GLuint *id);
+*/
+
+
 
 #define arraylen(x) (sizeof((x))/sizeof((x)[0]))
 #define PI (3.1415926535897931)
@@ -824,6 +826,7 @@ public:
     static void RemoveFromRecentList(const std::string &filename);
     static void AddToRecentList(const std::string &filename);
     std::string saveFile;
+    std::string rawname;
     bool        fileLoadError;
     bool        unsaved;
     typedef struct {

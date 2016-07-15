@@ -168,7 +168,7 @@ bool GraphicsWindow::ToolbarDrawOrHitTest(int mx, int my,
         }
 
         if(paint) {
-            glColor4d(0, 0, 0, 1.0);
+            glColor4d(0, 0, 0, 0.5);
             Point2d o = { (double)(x - icon.pixmap.width  / 2),
                           (double)(y - icon.pixmap.height / 2) };
             ssglDrawPixmap(icon.pixmap, o, /*flip=*/true);
