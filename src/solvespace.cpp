@@ -477,14 +477,14 @@ void SolveSpaceUI::MenuFile(Command id) {
 
         case Command::EXPORT_PNG: {
             std::string exportFile=SS.rawname;
-            if(!GetSaveFile(&exportFile, "", PngFileFilter)) break;
+            if(!GetSaveFile(&exportFile, exportFile, PngFileFilter)) break;
             SS.ExportAsPngTo(exportFile);
             break;
         }
 
         case Command::EXPORT_VIEW: {
             std::string exportFile=SS.rawname;
-            if(!GetSaveFile(&exportFile, CnfThawString("", "ViewExportFormat"),
+            if(!GetSaveFile(&exportFile, CnfThawString(exportFile, "ViewExportFormat"),
                             VectorFileFilter)) break;
             CnfFreezeString(Extension(exportFile), "ViewExportFormat");
 
@@ -506,7 +506,7 @@ void SolveSpaceUI::MenuFile(Command id) {
 
         case Command::EXPORT_WIREFRAME: {
             std::string exportFile=SS.rawname;
-            if(!GetSaveFile(&exportFile, CnfThawString("", "WireframeExportFormat"),
+            if(!GetSaveFile(&exportFile, CnfThawString(exportFile, "WireframeExportFormat"),
                             Vector3dFileFilter)) break;
             CnfFreezeString(Extension(exportFile), "WireframeExportFormat");
 
@@ -516,7 +516,7 @@ void SolveSpaceUI::MenuFile(Command id) {
 
         case Command::EXPORT_SECTION: {
             std::string exportFile=SS.rawname;
-            if(!GetSaveFile(&exportFile, CnfThawString("", "SectionExportFormat"),
+            if(!GetSaveFile(&exportFile, CnfThawString(exportFile, "SectionExportFormat"),
                             VectorFileFilter)) break;
             CnfFreezeString(Extension(exportFile), "SectionExportFormat");
 
@@ -536,7 +536,7 @@ void SolveSpaceUI::MenuFile(Command id) {
 
         case Command::EXPORT_SURFACES: {
             std::string exportFile=SS.rawname;
-            if(!GetSaveFile(&exportFile, CnfThawString("", "SurfacesExportFormat"),
+            if(!GetSaveFile(&exportFile, CnfThawString(exportFile, "SurfacesExportFormat"),
                             SurfaceFileFilter)) break;
             CnfFreezeString(Extension(exportFile), "SurfacesExportFormat");
 
