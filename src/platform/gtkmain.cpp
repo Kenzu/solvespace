@@ -61,6 +61,7 @@
 #   endif
 #endif
 
+
 namespace SolveSpace {
 /* Settings */
 

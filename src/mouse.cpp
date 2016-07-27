@@ -1010,6 +1010,8 @@ void GraphicsWindow::MouseLeftDown(double mx, double my) {
                     break;
                 }
                 case Command::CUBIC:
+                
+
                     hr = AddRequest(Request::Type::CUBIC);
                     SK.GetEntity(hr.entity(1))->PointForceTo(v);
                     SK.GetEntity(hr.entity(2))->PointForceTo(v);

@@ -6,6 +6,7 @@
 //-----------------------------------------------------------------------------
 #include "solvespace.h"
 #include "config.h"
+#define setrawname(sname) SS.rawname = sname;SS.rawname.erase(0,SS.rawname.find_last_of("/")+1); SS.rawname.erase(SS.rawname.find_last_of(".")+DELETEDOT, 200);  
 
 SolveSpaceUI SolveSpace::SS = {};
 Sketch SolveSpace::SK = {};
@@ -137,7 +138,7 @@ bool SolveSpaceUI::OpenFile(const std::string &filename) {
         saveFile = filename;
         rawname = filename;
         rawname.erase(0,rawname.find_last_of("/")+1);
-        rawname.erase(rawname.find_last_of(".")+1, 200);        
+        rawname.erase(rawname.find_last_of(".")+DELETEDOT, 200);        
     bool success = fileLoaded && ReloadAllImported(/*canCancel=*/true);
     if(success) {
         AddToRecentList(filename);
@@ -307,6 +308,7 @@ void SolveSpaceUI::AfterNewFile() {
     // Clear out the traced point, which is no longer valid
     traced.point = Entity::NO_ENTITY;
     traced.path.l.Clear();
+    rawname="";
     // and the naked edges
     nakedEdges.Clear();
 
@@ -385,11 +387,13 @@ bool SolveSpaceUI::GetFilenameAndSave(bool saveAs) {
     if(SaveToFile(saveFile)) {
         AddToRecentList(saveFile);
         RemoveAutosave();
+        setrawname(saveFile);
         unsaved = false;
         return true;
     } else {
         // don't store an invalid save filename
         saveFile = prevSaveFile;
+
         return false;
     }
 }
@@ -479,6 +483,7 @@ void SolveSpaceUI::MenuFile(Command id) {
             std::string exportFile=SS.rawname;
             if(!GetSaveFile(&exportFile, exportFile, PngFileFilter)) break;
             SS.ExportAsPngTo(exportFile);
+            setrawname(exportFile);
             break;
         }
 
@@ -501,6 +506,7 @@ void SolveSpaceUI::MenuFile(Command id) {
             }
 
             SS.ExportViewOrWireframeTo(exportFile, /*exportWireframe*/false);
+            setrawname(exportFile);
             break;
         }
 
@@ -511,6 +517,7 @@ void SolveSpaceUI::MenuFile(Command id) {
             CnfFreezeString(Extension(exportFile), "WireframeExportFormat");
 
             SS.ExportViewOrWireframeTo(exportFile, /*exportWireframe*/true);
+            setrawname(exportFile);
             break;
         }
 
@@ -521,6 +528,7 @@ void SolveSpaceUI::MenuFile(Command id) {
             CnfFreezeString(Extension(exportFile), "SectionExportFormat");
 
             SS.ExportSectionTo(exportFile);
+            setrawname(exportFile);
             break;
         }
 
@@ -531,6 +539,7 @@ void SolveSpaceUI::MenuFile(Command id) {
             CnfFreezeString(Extension(exportFile), "MeshExportFormat");
 
             SS.ExportMeshTo(exportFile);
+            setrawname(exportFile);
             break;
         }
 
@@ -542,6 +551,7 @@ void SolveSpaceUI::MenuFile(Command id) {
 
             StepFileWriter sfw = {};
             sfw.ExportSurfacesTo(exportFile);
+            setrawname(exportFile);
             break;
         }
 

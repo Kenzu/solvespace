@@ -586,12 +586,14 @@ void ssglDrawPixmap( Pixmap &pixmap, Vector a, Vector b, Vector c, Vector d) {
     int format = pixmap.hasAlpha ? GL_RGBA : GL_RGB;
     glTexImage2D(GL_TEXTURE_2D, 0, format, /*pixmap.width*/24, /*pixmap.height*/24, 0,
                  format, GL_UNSIGNED_BYTE, &pixmap.data[0]);
+/*
     unsigned char *w=&pixmap.data[0];
     *w++=0xff;
     *w++=0xff;
     *w++=0xff;
     *w++=0xff;
     *w++=0xff;
+*/
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_QUADS);
         glTexCoord2d(0.0, 0.0);

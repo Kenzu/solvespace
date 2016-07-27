@@ -765,6 +765,9 @@ void GraphicsWindow::MenuEdit(Command id) {
                         SS.TW.ClearSuper();
                     }
                 }
+            } else {
+                // ryan: canceled oepration must be undoed
+                SS.UndoUndo();
             }
             SS.GW.ClearSuper();
             SS.TW.HideEditControl();

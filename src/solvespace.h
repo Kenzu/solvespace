@@ -27,8 +27,10 @@
 
 //#define CLIONLY
 
+#define DELETEDOT 1
 #ifdef WIN32
 #   include <windows.h> // required by GL headers
+#define DELETEDOT 0
 #endif
 #ifdef __APPLE__
 #   include <strings.h> // for strcasecmp in file.cpp
