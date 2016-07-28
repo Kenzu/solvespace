@@ -5,6 +5,7 @@
 //-----------------------------------------------------------------------------
 #include "solvespace.h"
 #include <unistd.h>
+#include <iostream>
 
 #define VERSION_STRING "\261\262\263" "SolveSpaceREVa"
 
@@ -92,9 +93,13 @@ const SolveSpaceUI::SaveTable SolveSpaceUI::SAVED[] = {
     { 'g',  "Group.activeWorkplane.v",  'x',    &(SS.sv.g.activeWorkplane.v)  },
     { 'g',  "Group.opA.v",              'x',    &(SS.sv.g.opA.v)              },
     { 'g',  "Group.opB.v",              'x',    &(SS.sv.g.opB.v)              },
+    // save the expression
+    { 'g',  "Group.svalA",               'S',    &(SS.sv.g.svalA)             },
+
     { 'g',  "Group.valA",               'f',    &(SS.sv.g.valA)               },
     { 'g',  "Group.valB",               'f',    &(SS.sv.g.valB)               },
     { 'g',  "Group.valC",               'f',    &(SS.sv.g.valB)               },
+    
     { 'g',  "Group.color",              'c',    &(SS.sv.g.color)              },
     { 'g',  "Group.subtype",            'd',    &(SS.sv.g.subtype)            },
     { 'g',  "Group.skipFirst",          'b',    &(SS.sv.g.skipFirst)          },
@@ -115,6 +120,8 @@ const SolveSpaceUI::SaveTable SolveSpaceUI::SAVED[] = {
     { 'g',  "Group.relaxConstraints",   'b',    &(SS.sv.g.relaxConstraints)   },
     { 'g',  "Group.allowRedundant",     'b',    &(SS.sv.g.allowRedundant)     },
     { 'g',  "Group.allDimsReference",   'b',    &(SS.sv.g.allDimsReference)   },
+    // save expression
+    { 'g',  "Group.sscale",              'S',    &(SS.sv.g.sscale)              },
     { 'g',  "Group.scale",              'f',    &(SS.sv.g.scale)              },
     { 'g',  "Group.remap",              'M',    &(SS.sv.g.remap)              },
     { 'g',  "Group.impFile",            'S',    &(SS.sv.g.linkFile)           },
@@ -234,7 +241,7 @@ void SolveSpaceUI::SaveUsingTable(int type) {
             case 'b': fprintf(fh, "%d",    p->b() ? 1 : 0);       break;
             case 'c': fprintf(fh, "%08x",  p->c().ToPackedInt()); break;
             case 'd': fprintf(fh, "%d",    p->d());               break;
-            case 'f': fprintf(fh, "%.4f", p->f());               break;
+            case 'f': fprintf(fh, "%.8f", p->f());               break;
             case 'x': fprintf(fh, "%08x",  p->x());               break;
 
             case 'M': {
@@ -459,10 +466,44 @@ bool SolveSpaceUI::LoadFromFile(const std::string &filename) {
 
     sv = {};
     sv.g.scale = 1; // default is 1, not 0; so legacy files need this
+    sv.g.valA = 1;
+    sv.g.svalA = "1";
+    sv.g.sscale="";
     sv.c.comment="";
     Style::FillDefaultStyle(&sv.s);
 
+     // lets read all the comment to fill the variable
     char line[1024];
+    while(fgets(line, (int)sizeof(line), fh)) {
+        char *s = strchr(line, '\n');
+        if(s) *s = '\0';
+        // We should never get files with \r characters in them, but mailers
+        // will sometimes mangle attachments.
+        s = strchr(line, '\r');
+        if(s) *s = '\0';
+
+        if(*line == '\0') continue;
+
+        char *e = strstr(line, "Constraint.comment=");
+        if(e) {
+            char *val = e+19;
+            // ryan, lets parse the expression
+            if (strlen(val)>0) {
+            Expr *e=Expr::From(val,false);
+
+              //Error(val);  
+              e->Eval();
+            }
+        }
+        
+    }
+    fclose(fh);
+    // lets read real content
+    fh = ssfopen(filename, "rb");
+    Group *gchanged[20];
+    float vchanged[20];
+    int nchanged=0;
+
     while(fgets(line, (int)sizeof(line), fh)) {
         char *s = strchr(line, '\n');
         if(s) *s = '\0';
@@ -484,9 +525,40 @@ bool SolveSpaceUI::LoadFromFile(const std::string &filename) {
             if(sv.g.type == Group::Type::LINKED)
                 sv.g.opA.v = 0;
 
+            // reevaluate expression, who know the "repeat times" change
+            bool changed=false;
+            if (sv.g.svalA!=""){
+                Expr *e=Expr::From(sv.g.svalA.c_str(), false);
+                double vv=e->Eval();
+                changed=vv!=sv.g.valA;
+                sv.g.valA=vv;
+            }
+            // scale paremeter
+            if (sv.g.sscale!=""){
+                //Error(sv.g.sscale.c_str());
+                Expr *e=Expr::From(sv.g.sscale.c_str(), false);
+                double vv=(SS.ExprToMm(e));
+                sv.g.scale=vv;
+                
+            }
+             
+            // if rotate
+            
+            // need to reposition the copies from rotate group, because perhaps
+            // the number of copies are change (by external parameter/variable)
             SK.group.Add(&(sv.g));
+            if (changed) {
+                vchanged[nchanged] = sv.g.valA;
+                Group *g = SK.GetGroup(sv.g.h);
+                gchanged[nchanged]=g;
+                nchanged++;
+            }
+            
+
             sv.g = {};
-            sv.g.scale = 1; // default is 1, not 0; so legacy files need this
+            sv.g.sscale = "1";
+            sv.g.scale=1;
+            // default is 1, not 0; so legacy files need this
         } else if(strcmp(line, "AddParam")==0) {
             // params are regenerated, but we want to preload the values
             // for initial guesses
@@ -532,6 +604,7 @@ bool SolveSpaceUI::LoadFromFile(const std::string &filename) {
             // ignore the mesh or shell, since we regenerate that
         } else {
             fileLoadError = true;
+            std::cout << line;
         }
     }
 
@@ -545,7 +618,17 @@ bool SolveSpaceUI::LoadFromFile(const std::string &filename) {
             NewFile();
         }
     }
-
+    
+ 
+    for (int i=0;i<nchanged;i++){
+                
+                //Error("test");
+                Group *g=gchanged[i];
+                double copies = (g->skipFirst) ? (vchanged[i] + 1) : vchanged[i];
+                SK.GetParam(g->h.param(3))->val = PI/(2*copies);
+                
+    }
+   ScheduleGenerateAll();
     return true;
 }
 

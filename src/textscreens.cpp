@@ -237,8 +237,9 @@ void TextWindow::ScreenOpacity(int link, uint32_t v) {
 }
 void TextWindow::ScreenChangeExprA(int link, uint32_t v) {
     Group *g = SK.GetGroup(SS.TW.shown.group);
-
-    SS.TW.ShowEditControl(10, ssprintf("%d", (int)g->valA));
+    // this must be a expression that can use variable
+    SS.TW.ShowEditControl(10, ssprintf("%s",g->svalA.c_str()));
+    //ssprintf("%d", (int)g->valA));
     SS.TW.edit.meaning = Edit::TIMES_REPEATED;
     SS.TW.edit.group.v = v;
 }
@@ -251,7 +252,7 @@ void TextWindow::ScreenChangeGroupName(int link, uint32_t v) {
 void TextWindow::ScreenChangeGroupScale(int link, uint32_t v) {
     Group *g = SK.GetGroup(SS.TW.shown.group);
 
-    SS.TW.ShowEditControl(13, ssprintf("%.3f", g->scale));
+    SS.TW.ShowEditControl(13, ssprintf("%s", g->sscale.c_str()));//ssprintf("%.3f", g->scale)
     SS.TW.edit.meaning = Edit::GROUP_SCALE;
     SS.TW.edit.group.v = v;
 }
@@ -650,6 +651,7 @@ void TextWindow::EditControlDone(const char *s) {
 
     switch(edit.meaning) {
         case Edit::TIMES_REPEATED: {
+            
             Expr *e = Expr::From(s, /*popUpError=*/true);
             if(e) {
                 SS.UndoRemember();
@@ -665,7 +667,9 @@ void TextWindow::EditControlDone(const char *s) {
                 }
 
                 Group *g = SK.GetGroup(edit.group);
+                g->svalA=std::string (s);
                 g->valA = ev;
+                
 
                 if(g->type == Group::Type::ROTATE) {
                     int i, c = 0;
@@ -701,12 +705,14 @@ void TextWindow::EditControlDone(const char *s) {
         }
         case Edit::GROUP_SCALE: {
             Expr *e = Expr::From(s, /*popUpError=*/true);
+            
             if(e) {
                 double ev = e->Eval();
                 if(fabs(ev) < 1e-6) {
                     Error("Scale cannot be zero.");
                 } else {
                     Group *g = SK.GetGroup(edit.group);
+                    g->sscale=std::string(s);
                     g->scale = ev;
                     SS.MarkGroupDirty(g->h);
                     SS.ScheduleGenerateAll();

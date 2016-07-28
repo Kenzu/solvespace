@@ -140,12 +140,16 @@ public:
     bool        relaxConstraints;
     bool        allowRedundant;
     bool        allDimsReference;
+    std::string sscale;
     double      scale;
 
     bool        clean;
     hEntity     activeWorkplane;
+    std::string svalA;    // since comments are represented as constraints
     double      valA;
+    std::string svalB;
     double      valB;
+    std::string svalC;
     double      valC;
     RgbaColor   color;
 

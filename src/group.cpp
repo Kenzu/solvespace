@@ -191,6 +191,8 @@ void Group::MenuGroup(Command id) {
             g.type = Type::ROTATE;
             g.opA = SS.GW.activeGroup;
             g.valA = 2;
+            g.svalA = "2";
+            
             g.subtype = Subtype::ONE_SIDED;
             g.name = "rotate";
             break;
