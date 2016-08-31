@@ -72,6 +72,62 @@ void Group::ExtrusionForceVectorTo(const Vector &v) {
 }
 
 void Group::MenuGroup(Command id) {
+    if (id==Command::GROUP_WRKPL2) {
+            Group *ge = SK.GetGroup(SS.TW.shown.group);
+            if(gs.points == 1 && gs.n == 1) {
+                ge->subtype = Subtype::WORKPLANE_BY_POINT_ORTHO;
+
+                Vector u = SS.GW.projRight, v = SS.GW.projUp;
+                u = u.ClosestOrtho();
+                v = v.Minus(u.ScaledBy(v.Dot(u)));
+                v = v.ClosestOrtho();
+
+                ge->predef.q = Quaternion::From(u, v);
+                ge->predef.origin = gs.point[0];
+            } else if(gs.points == 1 && gs.lineSegments == 2 && gs.n == 3) {
+                ge->subtype = Subtype::WORKPLANE_BY_LINE_SEGMENTS;
+
+                ge->predef.origin = gs.point[0];
+                ge->predef.entityB = gs.entity[0];
+                ge->predef.entityC = gs.entity[1];
+
+                Vector ut = SK.GetEntity(ge->predef.entityB)->VectorGetNum();
+                Vector vt = SK.GetEntity(ge->predef.entityC)->VectorGetNum();
+                ut = ut.WithMagnitude(1);
+                vt = vt.WithMagnitude(1);
+
+                if(fabs(SS.GW.projUp.Dot(vt)) < fabs(SS.GW.projUp.Dot(ut))) {
+                    swap(ut, vt);
+                    ge->predef.swapUV = true;
+                }
+                if(SS.GW.projRight.Dot(ut) < 0) ge->predef.negateU = true;
+                if(SS.GW.projUp.   Dot(vt) < 0) ge->predef.negateV = true;
+            } else {
+                Error("Bad selection for new sketch in workplane. This "
+                      "group can be created with:\n\n"
+                      "    * a point (orthogonal to coordinate axes, "
+                             "through the point)\n"
+                      "    * a point and two line segments (parallel to the "
+                             "lines, through the point)\n");
+                return;
+            }
+
+        ge->clean = false;
+        SS.GW.activeGroup = ge->h;
+        SS.GenerateAll();
+        if(ge->type == Type::DRAWING_WORKPLANE) {
+            // Can't set the active workplane for this one until after we've
+            // regenerated, because the workplane doesn't exist until then.
+            ge->activeWorkplane = ge->h.entity(0);
+        }
+
+        ge->Activate();
+        SS.GW.AnimateOntoWorkplane();
+        TextWindow::ScreenSelectGroup(0, ge->h.v);
+        SS.ScheduleShowTW();
+        return;
+
+    }
     Group g = {};
     g.visible = true;
     g.color = RGBi(100, 100, 100);
@@ -132,7 +188,9 @@ void Group::MenuGroup(Command id) {
                 return;
             }
             break;
+        case Command::GROUP_WRKPL2:
 
+            break;
         case Command::GROUP_EXTRUDE:
             if(!SS.GW.LockedInWorkplane()) {
                 Error("Select a workplane (Sketch -> In Workplane) before "
@@ -192,7 +250,7 @@ void Group::MenuGroup(Command id) {
             g.opA = SS.GW.activeGroup;
             g.valA = 2;
             g.svalA = "2";
-            
+
             g.subtype = Subtype::ONE_SIDED;
             g.name = "rotate";
             break;
@@ -283,6 +341,7 @@ void Group::MenuGroup(Command id) {
         // regenerated, because the workplane doesn't exist until then.
         gg->activeWorkplane = gg->h.entity(0);
     }
+
     gg->Activate();
     SS.GW.AnimateOntoWorkplane();
     TextWindow::ScreenSelectGroup(0, gg->h.v);

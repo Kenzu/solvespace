@@ -79,6 +79,7 @@ enum class Command : uint32_t {
     // Group
     GROUP_3D,
     GROUP_WRKPL,
+    GROUP_WRKPL2,
     GROUP_EXTRUDE,
     GROUP_LATHE,
     GROUP_ROT,
@@ -146,7 +147,7 @@ enum class ContextCommand : uint32_t {
     ADD_SPLINE_PT    = 0x142,
 
     PASTE_MIRR       = 0x1051,
-    
+
     FIRST_STYLE      = 0x40000000
 };
 

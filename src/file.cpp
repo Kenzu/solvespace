@@ -99,7 +99,7 @@ const SolveSpaceUI::SaveTable SolveSpaceUI::SAVED[] = {
     { 'g',  "Group.valA",               'f',    &(SS.sv.g.valA)               },
     { 'g',  "Group.valB",               'f',    &(SS.sv.g.valB)               },
     { 'g',  "Group.valC",               'f',    &(SS.sv.g.valB)               },
-    
+
     { 'g',  "Group.color",              'c',    &(SS.sv.g.color)              },
     { 'g',  "Group.subtype",            'd',    &(SS.sv.g.subtype)            },
     { 'g',  "Group.skipFirst",          'b',    &(SS.sv.g.skipFirst)          },
@@ -455,7 +455,7 @@ bool SolveSpaceUI::LoadFromFile(const std::string &filename) {
     fileLoadError = false;
     std::string folder = dirnameOf(filename);
     chdir(folder.c_str());
-    
+
     fh = ssfopen(filename, "rb");
     if(!fh) {
         Error("Couldn't read from file '%s'", filename.c_str());
@@ -491,11 +491,11 @@ bool SolveSpaceUI::LoadFromFile(const std::string &filename) {
             if (strlen(val)>0) {
             Expr *e=Expr::From(val,false);
 
-              //Error(val);  
+              //Error(val);
               e->Eval();
             }
         }
-        
+
     }
     fclose(fh);
     // lets read real content
@@ -539,11 +539,11 @@ bool SolveSpaceUI::LoadFromFile(const std::string &filename) {
                 Expr *e=Expr::From(sv.g.sscale.c_str(), false);
                 double vv=(SS.ExprToMm(e));
                 sv.g.scale=vv;
-                
+
             }
-             
+
             // if rotate
-            
+
             // need to reposition the copies from rotate group, because perhaps
             // the number of copies are change (by external parameter/variable)
             SK.group.Add(&(sv.g));
@@ -553,7 +553,7 @@ bool SolveSpaceUI::LoadFromFile(const std::string &filename) {
                 gchanged[nchanged]=g;
                 nchanged++;
             }
-            
+
 
             sv.g = {};
             sv.g.sscale = "1";
@@ -572,7 +572,7 @@ bool SolveSpaceUI::LoadFromFile(const std::string &filename) {
         } else if(strcmp(line, "AddConstraint")==0) {
             // ryan
             Expr *e=Expr::From(sv.c.comment.c_str(), false);
-            
+
             if (sv.c.comment!=""){
               if (sv.c.type==Constraint::Type::COMMENT) e->Eval();
               else {
@@ -580,7 +580,7 @@ bool SolveSpaceUI::LoadFromFile(const std::string &filename) {
                 sv.c.valA=vv;
               }
             }
-            
+
             SK.constraint.Add(&(sv.c));
             sv.c = {};
             sv.c.comment="";
@@ -618,15 +618,15 @@ bool SolveSpaceUI::LoadFromFile(const std::string &filename) {
             NewFile();
         }
     }
-    
- 
+
+
     for (int i=0;i<nchanged;i++){
-                
-                //Error("test");
+
+//                Error("test");
                 Group *g=gchanged[i];
                 double copies = (g->skipFirst) ? (vchanged[i] + 1) : vchanged[i];
                 SK.GetParam(g->h.param(3))->val = PI/(2*copies);
-                
+
     }
    ScheduleGenerateAll();
     return true;

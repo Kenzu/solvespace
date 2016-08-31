@@ -93,6 +93,7 @@ const GraphicsWindow::MenuEntry GraphicsWindow::menu[] = {
 { 0, "&New Group",                  Command::NONE,             0,       TN, NULL  },
 { 1, "Sketch In &3d",               Command::GROUP_3D,         S|'3',   TN, mGrp  },
 { 1, "Sketch In New &Workplane",    Command::GROUP_WRKPL,      S|'W',   TN, mGrp  },
+{ 1, "Change &Plane",    Command::GROUP_WRKPL2,      S|'P',   TN, mGrp  },
 { 1, NULL,                          Command::NONE,             0,       TN, NULL  },
 { 1, "Step &Translating",           Command::GROUP_TRANS,      S|'T',   TN, mGrp  },
 { 1, "Step &Rotating",              Command::GROUP_ROT,        S|'R',   TN, mGrp  },
